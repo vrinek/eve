@@ -1,0 +1,11 @@
+<h1>Tools#compare_items</h1>
+<p>Find me in app/views/tools/compare_items.html.erb</p>
+
+<div id="browse">
+	<ul id="pane-1">
+		<%= render @roots %>
+	</ul>
+	<% 4.times.each do |i| %>
+		<ul id="pane-<%= i+2 %>"></ul>
+	<% end %>
+</div>
