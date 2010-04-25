@@ -1,4 +1,6 @@
 Eve::Application.routes.draw do |map|
+  get "mining/calculator"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

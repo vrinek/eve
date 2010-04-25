@@ -6,12 +6,10 @@ class CreateItemTypes < ActiveRecord::Migration
       t.integer :portion_size
       t.integer :market_group_id
 
-      t.index [:name, :market_group_id]
-
       t.timestamps
     end
     
-    
+    add_index :item_types, [:name, :market_group_id]
   end
 
   def self.down
