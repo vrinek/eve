@@ -3,6 +3,7 @@ class MarketGroup < ActiveRecord::Base
   EVE_ID_FIELD = "marketGroupID"
   
   has_ancestry
+  has_many :item_types
   
   class << self
     def translate(row)

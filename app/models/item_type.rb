@@ -3,6 +3,7 @@ class ItemType < ActiveRecord::Base
   EVE_ID_FIELD = "typeID"
   
   belongs_to :market_group
+  has_many :item_attributes
   
   class << self
     def translate(row)

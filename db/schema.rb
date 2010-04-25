@@ -9,7 +9,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100425131246) do
+ActiveRecord::Schema.define(:version => 20100425171223) do
+
+  create_table "attribute_types", :force => true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.boolean  "high_is_good"
+    t.integer  "attribute_unit_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "attribute_types", ["attribute_unit_id"], :name => "index_attribute_types_on_unit_id"
+
+  create_table "attribute_units", :force => true do |t|
+    t.string   "name"
+    t.string   "display"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "item_attributes", :id => false, :force => true do |t|
+    t.integer  "item_type_id"
+    t.integer  "attribute_type_id"
+    t.integer  "integer_value"
+    t.float    "float_value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "item_attributes", ["item_type_id", "attribute_type_id"], :name => "index_item_attributes_on_item_type_id_and_attribute_type_id"
 
   create_table "item_types", :force => true do |t|
     t.string   "name"
