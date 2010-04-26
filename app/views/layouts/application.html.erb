@@ -10,9 +10,10 @@
 <body id="<%= controller.controller_name+"-"+controller.action_name %>" <% unless is_trusted? %> onload="CCPEVE.requestTrust('http://0.0.0.0')"<% end %>>
 	<%= render "application/header" %>
 	
-	<h1><%= @title %></h1>
-
-	<%= yield %>
+	<div id="main">
+		<h1><%= @title %></h1>
+		<%= yield %>
+	</div>
 	
 	<%= render "application/footer" %>
 </body>

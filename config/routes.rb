@@ -1,4 +1,10 @@
 Eve::Application.routes.draw do |map|
+  get "static/faq"
+
+  get "static/contact"
+
+  get "debug/dump"
+
   get "tools/compare_items"
 
   get "mining/calculator"
