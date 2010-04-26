@@ -2,17 +2,22 @@ class ToolsController < ApplicationController
   before_filter :parse_shown_ids, :only => %w{fetch_children add_or_remove}
   
   def compare_items
+    @title = "Item Comparison Tool"
+    
     @roots = MarketGroup.all(:conditions => {:ancestry => nil}, :order => "name ASC")
+    @depth = 0
   end
   
   def fetch_children
-    mg = MarketGroup.find(params[:id])
+    @group = MarketGroup.find(params[:id])
     
-    if mg.has_children?
-      @children = mg.children.all(:order => "name ASC")
+    if @group.has_children?
+      @children = @group.children.all(:order => "name ASC")
     else
-      @children = mg.item_types.all(:order => "name ASC", :select => "name, id")
+      @children = @group.item_types.all(:order => "name ASC", :select => "name, id")
     end
+    
+    @depth = params[:depth].to_i + 1
   end
   
   def add_or_remove

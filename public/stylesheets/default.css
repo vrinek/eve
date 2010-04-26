@@ -1,8 +1,33 @@
+body {
+  background-color: #333333;
+  color: white;
+}
+a {
+  color: lightgrey;
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+#header {
+  padding: 8px;
+  margin-bottom: 16px;
+}
+#footer {
+  font-size: 12px;
+  padding: 32px 24px 16px;
+  text-align: right;
+}
+h1 {
+  font: 24px bold;
+  padding: 2px 0 4px 16px;
+  margin-bottom: 28px;
+  border-bottom: 1px solid white;
+}
 #tools-compare_items #browse_groups {
   height: 300px;
   overflow-x: scroll;
   overflow-y: hidden;
   width: 100%;
+  padding-bottom: 16px;
 }
 #tools-compare_items #browse_groups .wrapper {
   height: 100%;
@@ -15,4 +40,10 @@
   overflow-x: hidden;
   float: left;
 }
-#tools-compare_items #browse_groups .wrapper ul.pane li:hover { background-color: lightyellow; }
+#tools-compare_items #browse_groups .wrapper ul.pane li {
+  width: 230px;
+  padding: 2px 4px 2px 6px;
+}
+#tools-compare_items #browse_groups .wrapper ul.pane li a { display: block; }
+#tools-compare_items #browse_groups .wrapper ul.pane li.selected { background-color: darkgreen; }
+#tools-compare_items #browse_groups .wrapper ul.pane li.shown { background-color: olive; }

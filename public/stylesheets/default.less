@@ -1,23 +1,70 @@
+body {
+	background-color: #333;
+	color: white;
+}
+
+a {
+	color: lightgrey;
+	text-decoration: none;
+	
+	:hover {
+		text-decoration: underline;
+	}
+}
+
+#header {
+	padding: 8px;
+	margin-bottom: 16px;
+}
+
+#footer {
+	font-size: 12px;
+	padding: 32px 24px 16px;
+	text-align: right;
+}
+
+h1 {
+	font: 24px bold;
+	padding: 2px 0 4px 16px;
+	margin-bottom: 28px;
+	border-bottom: 1px solid white;
+}
+
 #tools-compare_items {
 	#browse_groups {
 		height: 300px;
 		overflow-x: scroll;
 		overflow-y: hidden;
 		width: 100%;
+		padding-bottom: 16px;
 		
 		.wrapper {
+			@pane-width: 240px;
 			height: 100%;
-			width: 1440px;
+			width: @pane-width * 6;
 
 			ul.pane {
 				height: 100%;
-				width: 240px;
+				width: @pane-width;
 				overflow-y: scroll;
 				overflow-x: hidden;
 				float: left;
 				
-				li:hover {
-					background-color: lightyellow;
+				li {
+					width: @pane-width - 10;
+					padding: 2px 4px 2px 6px;
+					
+					a {
+						display: block;
+					}
+				}
+				
+				li.selected {
+					background-color: darkgreen;
+				}
+				
+				li.shown {
+					background-color: olive;
 				}
 			}
 		}

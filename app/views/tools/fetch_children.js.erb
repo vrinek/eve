@@ -1,4 +1,22 @@
-$('pane-<%= params[:depth].to_i + 2 %>').update("<%= escape_javascript(render(@children)) %>");
-<% ((params[:depth].to_i + 3)..6).each do |i| %>
+newPaneID = 'pane-<%= @depth + 1 %>';
+$(newPaneID).update("<%= escape_javascript(render(@children)) %>");
+$(newPaneID).show();
+<% ((@depth + 2)..6).each do |i| %>
 	$('pane-<%= i %>').update('');
+	$('pane-<%= i %>').hide();
 <% end %>
+
+$$('#browse_groups li.market_group').each(function(li){
+	if(li.getAttribute('data-group-id') == '<%= @group.id %>'){
+		li.addClassName('selected');
+	}else if(li.getAttribute('data-depth') == '<%= @depth - 1 %>'){
+		li.removeClassName('selected');
+	};
+});
+
+shownIds.each(function(id){
+	li = $$('#browse_groups li.item_type[data-item-id="'+id+'"]');
+	if(li.size() > 0){
+		li[0].addClassName('shown');
+	};
+});

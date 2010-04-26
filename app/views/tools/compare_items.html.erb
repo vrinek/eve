@@ -1,13 +1,10 @@
-<h1>Tools#compare_items</h1>
-<p>Find me in app/views/tools/compare_items.html.erb</p>
-
 <div id="browse_groups">
 	<div class="wrapper">
 		<ul id="pane-1" class="pane">
 			<%= render @roots %>
 		</ul>
 		<% 5.times.each do |i| %>
-			<ul id="pane-<%= i+2 %>" class="pane"></ul>
+			<ul id="pane-<%= i+2 %>" class="pane" style="display:none"></ul>
 		<% end %>
 	</div>
 </div>
@@ -17,10 +14,13 @@
 	shownIds = [];
 	
 	itemChecked = function(itemId){
+		li = $$('#browse_groups li.item_type[data-item-id="'+itemId+'"]')[0];
 		if(shownIds.indexOf(itemId) == -1){
 			shownIds.push(itemId);
+			li.addClassName('shown');
 		}else{
 			shownIds = shownIds.without(itemId);
+			li.removeClassName('shown');
 		};
 		
 		<%=raw remote_function(:url => {:action => "add_or_remove"}, :with => "'shown_ids='+shownIds.join(',')") %>
