@@ -1,3 +1,4 @@
 <li class="item_type" data-item-id="<%= item_type.id %>">
-	<%= link_to item_type.name, '#', :onclick => "itemChecked(#{item_type.id}); return false;" %>
+	<%= ingame_link_to_item item_type.id %>
+	<%= link_to item_type.name, '#', :onclick => "itemChecked(#{item_type.id}); return false;", :class => "name" %>
 </li>

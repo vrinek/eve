@@ -1,5 +1,10 @@
 newPaneID = 'pane-<%= @depth + 1 %>';
+
 $(newPaneID).update("<%= escape_javascript(render(@children)) %>");
+<% if @group.is_childless? %>
+	$(newPaneID).insert("<%= escape_javascript(render('add_all_items')) %>");
+<% end %>
+
 $(newPaneID).show();
 <% ((@depth + 2)..6).each do |i| %>
 	$('pane-<%= i %>').update('');

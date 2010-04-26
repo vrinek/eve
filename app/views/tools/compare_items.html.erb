@@ -24,5 +24,25 @@
 		};
 		
 		<%=raw remote_function(:url => {:action => "add_or_remove"}, :with => "'shown_ids='+shownIds.join(',')") %>
-	}
+	};
+	
+	addAll = function(ids){
+		ids.each(function(id){
+			if(shownIds.indexOf(id) == -1){
+				shownIds.push(id);
+				$$('#browse_groups li.item_type[data-item-id="'+id+'"]')[0].addClassName('shown');
+			};
+		});
+		
+		<%=raw remote_function(:url => {:action => "add_or_remove"}, :with => "'shown_ids='+shownIds.join(',')") %>
+	};
+	
+	clearComparison = function(){
+		shownIds = [];
+		$('comparison').update('');
+
+		$$('#browse_groups li.item_type').each(function(li){
+			li.removeClassName('shown');
+		});
+	};
 </script>

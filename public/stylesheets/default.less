@@ -51,11 +51,16 @@ h1 {
 				float: left;
 				
 				li {
-					width: @pane-width - 10;
-					padding: 2px 4px 2px 6px;
+					width: @pane-width - 26;
+					padding: 2px 20px 2px 6px;
 					
-					a {
+					a.name {
 						display: block;
+						margin-right: 20px;
+					}
+					
+					a.ingame-item-info {
+						float: right;
 					}
 				}
 				
@@ -65,6 +70,56 @@ h1 {
 				
 				li.shown {
 					background-color: olive;
+				}
+				
+				li.add_all_items {
+					text-align: right;
+					margin-top: 16px;
+					font-size: 12px;
+				}
+			}
+		}
+	}
+	
+	#comparison {
+		padding: 4px;
+		
+		table {
+			td {
+				font-family: monospace;
+				text-align: right;
+				padding: 0 4px;
+				border-left: 1px solid white;
+			}
+			
+			th {
+				padding: 2px;
+			}
+			
+			tr.items {
+				th.name {
+					padding: 2px 8px;
+					
+					span {
+						white-space: nowrap;
+						margin-right: 20px;
+					}
+					
+					a.ingame-item-info {
+						float: right;
+					}
+				}
+			}
+			
+			tr.attribute {
+				th.name {
+					padding: 2px 8px 2px 4px;
+				}
+			}
+			
+			tr.attribute.odd {
+				th, td {
+					background-color: black;
 				}
 			}
 		}

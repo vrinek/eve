@@ -1,22 +1,27 @@
+<%= button_to_function "Remove all items", "clearComparison()" %>
+
 <table>
-	<tr>
+	<tr class="items">
 		<th></th>
 		<% @items.each do |item| %>
-			<th>
-				<%= item.name %>
+			<th class="name">
+				<%= ingame_link_to_item item.id %>
+				<span><%= item.name %></span>
 			</th>
 		<% end %>
 	</tr>
 	<% @all_attribute_types.each do |attribute| %>
-		<tr id="attribute-<%= attribute.code %>">
-			<td class="name">
+		<tr data-code="<%= attribute.code %>" class="attribute <%= cycle "odd", "even" %>">
+			<th class="name">
 				<%= attribute.name.blank? ? attribute.code : attribute.name %>
 				<% unless attribute.attribute_unit.display.blank? %>
 					<small>(<%= attribute.attribute_unit.display %>)</small>
 				<% end %>
-			</td>
+			</th>
 			<% @items.each do |item| %>
-				<td><%= item.attribute(attribute.code).try(:value) %></td>
+				<td>
+					<%= item.attribute(attribute.code).try(:value) %>
+				</td>
 			<% end %>
 		</tr>
 	<% end %>

@@ -6,7 +6,14 @@ class ItemAttribute < ActiveRecord::Base
   belongs_to :attribute_type
   
   def value
-    integer_value.nil? ? float_value : integer_value
+    v = (integer_value.nil? ? float_value : integer_value)
+    
+    case attribute_type.attribute_unit.try(:name)
+    when "typeID"
+      v = ItemType.find(v).name
+    end
+    
+    return v
   end
   
   def full_value

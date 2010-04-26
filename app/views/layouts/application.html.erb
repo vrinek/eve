@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Eve</title>
+	<title><%= @title or "EveTools" %></title>
 	<%= stylesheet_link_tag "http://yui.yahooapis.com/2.8.0r4/build/reset/reset-min.css" %>
 	<%= stylesheet_link_tag :all %>
 	<%= javascript_include_tag :defaults %>
 	<%= csrf_meta_tag %>
 </head>
-<body id="<%= controller.controller_name+"-"+controller.action_name %>">
+<body id="<%= controller.controller_name+"-"+controller.action_name %>" <% unless is_trusted? %> onload="CCPEVE.requestTrust('http://0.0.0.0')"<% end %>>
 	<%= render "application/header" %>
 	
 	<h1><%= @title %></h1>
