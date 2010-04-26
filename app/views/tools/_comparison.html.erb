@@ -1,0 +1,23 @@
+<table>
+	<tr>
+		<th></th>
+		<% @items.each do |item| %>
+			<th>
+				<%= item.name %>
+			</th>
+		<% end %>
+	</tr>
+	<% @all_attribute_types.each do |attribute| %>
+		<tr id="attribute-<%= attribute.code %>">
+			<td class="name">
+				<%= attribute.name.blank? ? attribute.code : attribute.name %>
+				<% unless attribute.attribute_unit.display.blank? %>
+					<small>(<%= attribute.attribute_unit.display %>)</small>
+				<% end %>
+			</td>
+			<% @items.each do |item| %>
+				<td><%= item.attribute(attribute.code).try(:value) %></td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>

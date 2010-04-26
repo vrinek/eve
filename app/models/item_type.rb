@@ -5,6 +5,10 @@ class ItemType < ActiveRecord::Base
   belongs_to :market_group
   has_many :item_attributes
   
+  def attribute(code)
+    item_attributes.detect{|ia| ia.attribute_type.code == code}
+  end
+  
   class << self
     def translate(row)
       @row = row

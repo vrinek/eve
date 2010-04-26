@@ -1,4 +1,4 @@
 $('pane-<%= params[:depth].to_i + 2 %>').update("<%= escape_javascript(render(@children)) %>");
-<% ((params[:depth].to_i + 3)..5).each do |i| %>
+<% ((params[:depth].to_i + 3)..6).each do |i| %>
 	$('pane-<%= i %>').update('');
 <% end %>

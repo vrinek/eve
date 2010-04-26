@@ -1,1 +1,3 @@
-<li><%= item_type.name %></li>
+<li class="item_type">
+	<%= link_to item_type.name, '#', :onclick => "itemChecked(#{item_type.id}); return false;" %>
+</li>

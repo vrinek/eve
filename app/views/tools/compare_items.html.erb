@@ -1,11 +1,28 @@
 <h1>Tools#compare_items</h1>
 <p>Find me in app/views/tools/compare_items.html.erb</p>
 
-<div id="browse">
-	<ul id="pane-1">
-		<%= render @roots %>
-	</ul>
-	<% 4.times.each do |i| %>
-		<ul id="pane-<%= i+2 %>"></ul>
-	<% end %>
+<div id="browse_groups">
+	<div class="wrapper">
+		<ul id="pane-1" class="pane">
+			<%= render @roots %>
+		</ul>
+		<% 5.times.each do |i| %>
+			<ul id="pane-<%= i+2 %>" class="pane"></ul>
+		<% end %>
+	</div>
 </div>
+<div id="comparison"></div>
+
+<script type="text/javascript" charset="utf-8">
+	shownIds = [];
+	
+	itemChecked = function(itemId){
+		if(shownIds.indexOf(itemId) == -1){
+			shownIds.push(itemId);
+		}else{
+			shownIds = shownIds.without(itemId);
+		};
+		
+		<%=raw remote_function(:url => {:action => "add_or_remove"}, :with => "'shown_ids='+shownIds.join(',')") %>
+	}
+</script>
