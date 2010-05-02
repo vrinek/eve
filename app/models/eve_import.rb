@@ -15,12 +15,20 @@ class EveImport
       FileUtils.makedirs(DATA_FOLDER)
       
       puts "\tDownloading..."
-      Net::HTTP.start("eve.no-ip.de") { |http|
-        resp = http.get("/dom111/dom111-mysql5-xml-v1/#{name}.bz2")
-        open(local+".bz2", "wb") { |file|
-          file.write(resp.body)
+      
+      domain = "eve.no-ip.de"
+      rest_of_url = "/dom111/dom111-mysql5-xml-v1/#{name}.bz2"
+      
+      unless `which wget`.blank? # in other words, if we have wget installed
+        system "wget http://#{domain}#{rest_of_url} -O #{local}.bz2"
+      else
+        Net::HTTP.start(domain) { |http|
+          resp = http.get(rest_of_url)
+          open(local+".bz2", "wb") { |file|
+            file.write(resp.body)
+          }
         }
-      }
+      end
 
       system "bunzip2 #{local}.bz2"
     end
