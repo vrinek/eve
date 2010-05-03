@@ -13,7 +13,7 @@ class AttributeType < ActiveRecord::Base
       return {
         :name                  => field("displayName"),
         :code                  => field("attributeName"),
-        :high_is_good          => (field("highIsGood") == "1"),
+        :high_is_good          => (field("highIsGood").to_i == 1),
         :attribute_unit_id     => field("unitID").to_i,
         :attribute_category_id => field("categoryID").to_i
       }

@@ -12,11 +12,11 @@
 	</tr>
 	<% previous_category_id = nil %>
 	<% @all_attribute_types.each do |attribute| %>
-		<% unless previous_category_id == attribute.attribute_category.id %>
+		<% unless previous_category_id == attribute.attribute_category_id %>
 			<tr class="category">
-				<th colspan="<%= @items.size + 1 %>"><%= attribute.attribute_category.name %></th>
+				<th colspan="<%= @items.size + 1 %>"><%= attribute.attribute_category.try(:name) %></th>
 			</tr>
-			<% previous_category_id = attribute.attribute_category.id %>
+			<% previous_category_id = attribute.attribute_category_id %>
 		<% end %>
 		<tr data-code="<%= attribute.code %>" class="attribute <%= cycle "odd", "even" %>">
 			<th class="name">
@@ -25,9 +25,11 @@
 					<small>(<%= attribute.attribute_unit.display %>)</small>
 				<% end %>
 			</th>
-			<% @items.each do |item| %>
-				<td>
-					<%= item.attribute(attribute.code).try(:value) %>
+			<% values = @items.map{|item| item.attribute(attribute.code).try(:value)} %>
+			<% best = attribute.high_is_good ? values.compact.sort.last : values.compact.sort.first %>
+			<% values.each do |value| %>
+				<td class="<%= 'best' if value == best and values.uniq.size > 1 %>">
+					<%= value %>
 				</td>
 			<% end %>
 		</tr>
