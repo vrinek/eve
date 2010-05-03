@@ -10,7 +10,10 @@ class ItemAttribute < ActiveRecord::Base
     
     case attribute_type.attribute_unit.try(:display)
     when "typeID"
-      v = ItemType.find(v).name
+      begin
+        v = ItemType.find(v).name
+      rescue
+      end
     end
     
     return v
