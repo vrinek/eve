@@ -21,9 +21,18 @@ a {
 	}
 }
 
+a#logo {
+	float: left;
+	display: block;
+	height: 128px;
+	width: 140px;
+	margin: 8px 32px 0 8px;
+}
+
 #header {
-	padding: 8px;
+	padding: 16px 0 8px;
 	margin-bottom: 16px;
+	height: 128px - (8px * 2);
 	
 	span.current {
 		color: #999;
@@ -63,7 +72,7 @@ h1 {
 	border-bottom: 1px solid white;
 }
 
-body#tools-compare_items {
+body.tools#compare_items {
 	#browse_groups {
 		height: 300px;
 		overflow-x: scroll;
@@ -159,9 +168,14 @@ body#tools-compare_items {
 	}
 }
 
-body#static-faq #main ul {
+body.static#contact #main p,
+body.welcome #main p {
 	font-size: 18px;
 	padding: 0 30px 0 100px;
+}
+
+body.static#faq #main ul {
+	body.static#contact #main p;
 
 	li {
 		margin-bottom: 32px;
@@ -171,9 +185,4 @@ body#static-faq #main ul {
 			margin-bottom: 8px;
 		}
 	}
-}
-
-body#static-contact #main p {
-	font-size: 18px;
-	padding: 0 30px 0 100px;
 }

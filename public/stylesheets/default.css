@@ -10,9 +10,17 @@ a {
   text-decoration: none;
 }
 a:hover { text-decoration: underline; }
+a#logo {
+  float: left;
+  display: block;
+  height: 128px;
+  width: 140px;
+  margin: 8px 32px 0 8px;
+}
 #header {
-  padding: 8px;
+  padding: 16px 0 8px;
   margin-bottom: 16px;
+  height: 112px;
 }
 #header span.current {
   color: #999999;
@@ -40,67 +48,71 @@ h1 {
   margin-bottom: 28px;
   border-bottom: 1px solid white;
 }
-body#tools-compare_items #browse_groups {
+body.tools#compare_items #browse_groups {
   height: 300px;
   overflow-x: scroll;
   overflow-y: hidden;
   width: 100%;
   padding-bottom: 16px;
 }
-body#tools-compare_items #browse_groups .wrapper {
+body.tools#compare_items #browse_groups .wrapper {
   height: 100%;
   width: 1440px;
 }
-body#tools-compare_items #browse_groups .wrapper ul.pane {
+body.tools#compare_items #browse_groups .wrapper ul.pane {
   height: 100%;
   width: 240px;
   overflow-y: scroll;
   overflow-x: hidden;
   float: left;
 }
-body#tools-compare_items #browse_groups .wrapper ul.pane li {
+body.tools#compare_items #browse_groups .wrapper ul.pane li {
   width: 214px;
   padding: 2px 20px 2px 6px;
 }
-body#tools-compare_items #browse_groups .wrapper ul.pane li a.name {
+body.tools#compare_items #browse_groups .wrapper ul.pane li a.name {
   display: block;
   margin-right: 20px;
 }
-body#tools-compare_items #browse_groups .wrapper ul.pane li a.ingame-item-info { float: right; }
-body#tools-compare_items #browse_groups .wrapper ul.pane li.selected { background-color: darkgreen; }
-body#tools-compare_items #browse_groups .wrapper ul.pane li.shown { background-color: olive; }
-body#tools-compare_items #browse_groups .wrapper ul.pane li.add_all_items {
+body.tools#compare_items #browse_groups .wrapper ul.pane li a.ingame-item-info { float: right; }
+body.tools#compare_items #browse_groups .wrapper ul.pane li.selected { background-color: darkgreen; }
+body.tools#compare_items #browse_groups .wrapper ul.pane li.shown { background-color: olive; }
+body.tools#compare_items #browse_groups .wrapper ul.pane li.add_all_items {
   text-align: right;
   margin-top: 16px;
   font-size: 12px;
 }
-body#tools-compare_items #comparison { padding: 4px; }
-body#tools-compare_items #comparison table td {
+body.tools#compare_items #comparison { padding: 4px; }
+body.tools#compare_items #comparison table td {
   font-family: monospace;
   text-align: right;
   padding: 0 4px;
   border-left: 1px solid white;
 }
-body#tools-compare_items #comparison table th { padding: 2px; }
-body#tools-compare_items #comparison table tr.items th.name { padding: 2px 8px; }
-body#tools-compare_items #comparison table tr.items th.name span {
+body.tools#compare_items #comparison table th { padding: 2px; }
+body.tools#compare_items #comparison table tr.items th.name { padding: 2px 8px; }
+body.tools#compare_items #comparison table tr.items th.name span {
   white-space: nowrap;
   margin-right: 20px;
 }
-body#tools-compare_items #comparison table tr.items th.name a.ingame-item-info { float: right; }
-body#tools-compare_items #comparison table tr.attribute th.name { padding: 2px 8px 2px 4px; }
-body#tools-compare_items #comparison table tr.attribute.odd th { background-color: black; }
-body#tools-compare_items #comparison table tr.attribute.odd td { background-color: black; }
-body#static-faq #main ul {
+body.tools#compare_items #comparison table tr.items th.name a.ingame-item-info { float: right; }
+body.tools#compare_items #comparison table tr.attribute th.name { padding: 2px 8px 2px 4px; }
+body.tools#compare_items #comparison table tr.attribute.odd th { background-color: black; }
+body.tools#compare_items #comparison table tr.attribute.odd td { background-color: black; }
+body.static#contact #main p {
   font-size: 18px;
   padding: 0 30px 0 100px;
 }
-body#static-faq #main ul li { margin-bottom: 32px; }
-body#static-faq #main ul li p.question {
+body.welcome #main p {
+  font-size: 18px;
+  padding: 0 30px 0 100px;
+}
+body.static#faq #main ul {
+  font-size: 18px;
+  padding: 0 30px 0 100px;
+}
+body.static#faq #main ul li { margin-bottom: 32px; }
+body.static#faq #main ul li p.question {
   color: #999999;
   margin-bottom: 8px;
-}
-body#static-contact #main p {
-  font-size: 18px;
-  padding: 0 30px 0 100px;
 }
