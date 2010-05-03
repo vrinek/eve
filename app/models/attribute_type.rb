@@ -3,6 +3,7 @@ class AttributeType < ActiveRecord::Base
   EVE_ID_FIELD = "attributeID"
   
   belongs_to :attribute_unit
+  belongs_to :attribute_category
   has_many :item_attributes
   
   class << self
@@ -10,10 +11,11 @@ class AttributeType < ActiveRecord::Base
       @row = row
 
       return {
-        :name              => field("displayName"),
-        :code              => field("attributeName"),
-        :high_is_good      => (field("highIsGood") == "1"),
-        :attribute_unit_id => field("unitID").to_i
+        :name                  => field("displayName"),
+        :code                  => field("attributeName"),
+        :high_is_good          => (field("highIsGood") == "1"),
+        :attribute_unit_id     => field("unitID").to_i,
+        :attribute_category_id => field("categoryID").to_i
       }
     end
 

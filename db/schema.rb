@@ -9,7 +9,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100425171223) do
+ActiveRecord::Schema.define(:version => 20100503124913) do
+
+  create_table "attribute_categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "attribute_types", :force => true do |t|
     t.string   "code"
@@ -18,8 +24,10 @@ ActiveRecord::Schema.define(:version => 20100425171223) do
     t.integer  "attribute_unit_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "attribute_category_id"
   end
 
+  add_index "attribute_types", ["attribute_category_id"], :name => "index_attribute_types_on_attribute_category_id"
   add_index "attribute_types", ["attribute_unit_id"], :name => "index_attribute_types_on_unit_id"
 
   create_table "attribute_units", :force => true do |t|

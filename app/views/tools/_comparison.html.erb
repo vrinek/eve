@@ -10,7 +10,14 @@
 			</th>
 		<% end %>
 	</tr>
+	<% previous_category_id = nil %>
 	<% @all_attribute_types.each do |attribute| %>
+		<% unless previous_category_id == attribute.attribute_category.id %>
+			<tr class="category">
+				<th colspan="<%= @items.size + 1 %>"><%= attribute.attribute_category.name %></th>
+			</tr>
+			<% previous_category_id = attribute.attribute_category.id %>
+		<% end %>
 		<tr data-code="<%= attribute.code %>" class="attribute <%= cycle "odd", "even" %>">
 			<th class="name">
 				<%= attribute.name.blank? ? attribute.code : attribute.name %>

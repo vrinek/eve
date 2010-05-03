@@ -29,7 +29,7 @@ class ToolsController < ApplicationController
       end
     end
     
-    @all_attribute_types = @all_attribute_types.flatten.uniq.sort_by(&:code)
+    @all_attribute_types = @all_attribute_types.flatten.uniq.sort_by(&:code).sort_by(&:attribute_category_id)
   end
   
   private
