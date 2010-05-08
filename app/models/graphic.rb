@@ -5,9 +5,9 @@ class Graphic < ActiveRecord::Base
   
   has_many :attribute_types
   
-  def url(size = 16, url_base = URL_BASE)
+  def url(size = 16)
     size = max_size if max_size and size > max_size
-    url_base + "icons/#{size}_#{size}/icon#{icon}.png"
+    URL_BASE + "icons/#{size}_#{size}/icon#{icon}.png"
   end
   
   class << self
@@ -27,17 +27,25 @@ class Graphic < ActiveRecord::Base
     def fix_after_import
       local_base = "#{`echo ~`.strip}/Downloads/Dominion_1.1_imgs/"
       sizes = [16, 32, 64, 128]
-      
+
       find_each do |graphic|
-        sizes.each do |size|
-          if File.exists?(graphic.icon_url(size, local_base))
-            graphic.max_size = size
+        if graphic.icon.blank?
+          graphic.destroy
+        else
+          sizes.each do |size|
+            if File.exists?(local_base + "icons/#{size}_#{size}/icon#{graphic.icon}.png")
+              graphic.max_size = size
+            else
+              break
+            end
+          end
+          
+          if graphic.max_size
+            graphic.save
           else
-            break
+            graphic.destroy
           end
         end
-        
-        graphic.save
       end
     end
   end

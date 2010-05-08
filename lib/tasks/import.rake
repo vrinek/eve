@@ -31,6 +31,8 @@ namespace :eve_dump do
       
       ticking.kill
 
+      ei.fix
+
       puts "Added #{model.count} #{model} successfully"
     end
   end
