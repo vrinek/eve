@@ -1,0 +1,59 @@
+<table id="market-prices">
+	<thead>
+		<tr>
+			<% @minerals.each do |mineral| %>
+				<th>
+					<%= image_tag mineral.graphic.url(32) %>
+					<%= mineral.name %>
+					<%= ingame_link_to_item mineral %>
+				</th>
+			<% end %>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<% @minerals.each do |mineral| %>
+				<td><%= text_field_tag "mineral-"+mineral.name, @prices[mineral.id], {:onkeyup => "updatePrices()"} %></td>
+			<% end %>
+		</tr>
+	</tbody>
+</table>
+
+<table id="ores">
+	<thead>
+		<tr>
+			<th></th>
+			<% @minerals.each do |mineral| %>
+				<th>
+					<%= image_tag mineral.graphic.url(64), :size => "64x64", :title => mineral.name %>
+				</th>
+			<% end %>
+			<th class="isk">ISK/m<span style="vertical-align: super; font-size: 12px;">3</span></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @basic_ores.each do |ore, composition| %>
+		 <tr class="<%= cycle 'odd', 'even' %>">
+			<td class="ore-name"><%= ore.name %><%= ingame_link_to_item ore %></td>
+			<% @minerals.each do |mineral| %>
+				<td class="value"><%= composition[mineral] %></td>
+			<% end %>
+			<td id="value-of-<%= ore.id %>"></td>
+		 </tr>
+		<% end %>
+	</tbody>
+</table>
+
+<script type="text/javascript" charset="utf-8">
+	updatePrices = function(){
+		<% @basic_ores.each do |ore, composition| %>
+			$('value-of-<%= ore.id %>').innerHTML = ((<%= composition.collect{|mineral, quantity|
+				"($('mineral-#{mineral.name}').value * #{quantity})"
+			}.join(" + ") %>) / <%= ore.volume * ore.portion_size %>).toFixed(2)
+		<% end %>
+		
+		return false;
+	};
+	
+	updatePrices();
+</script>

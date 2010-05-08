@@ -4,7 +4,17 @@ namespace :eve_dump do
     unless args[:model] == "all" or args[:model].blank?
       models = [args[:model].constantize]
     else
-      models = [ItemType, MarketGroup, AttributeType, AttributeUnit, ItemAttribute, AttributeCategory]
+      models = [
+        AttributeCategory,
+        AttributeType,
+        AttributeUnit,
+        Graphic,
+        ItemAttribute,
+        ItemCategory,
+        ItemGroup,
+        ItemType,
+        MarketGroup
+      ]
     end
     
     models.each do |model|

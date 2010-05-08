@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100508105430) do
+ActiveRecord::Schema.define(:version => 20100508145432) do
 
   create_table "attribute_categories", :force => true do |t|
     t.string   "name"
@@ -58,6 +58,35 @@ ActiveRecord::Schema.define(:version => 20100508105430) do
 
   add_index "item_attributes", ["item_type_id", "attribute_type_id"], :name => "index_item_attributes_on_item_type_id_and_attribute_type_id"
 
+  create_table "item_categories", :force => true do |t|
+    t.string   "name"
+    t.integer  "graphic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "item_categories", ["graphic_id"], :name => "index_item_categories_on_graphic_id"
+
+  create_table "item_groups", :force => true do |t|
+    t.integer  "item_category_id"
+    t.string   "name"
+    t.integer  "graphic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "item_groups", ["graphic_id"], :name => "index_item_groups_on_graphic_id"
+  add_index "item_groups", ["item_category_id"], :name => "index_item_groups_on_item_category_id"
+
+  create_table "item_type_materials", :force => true do |t|
+    t.integer "item_type_id"
+    t.integer "material_type_id"
+    t.integer "quantity"
+  end
+
+  add_index "item_type_materials", ["item_type_id"], :name => "index_item_type_materials_on_item_type_id"
+  add_index "item_type_materials", ["material_type_id"], :name => "index_item_type_materials_on_material_type_id"
+
   create_table "item_types", :force => true do |t|
     t.string   "name"
     t.float    "volume"
@@ -65,8 +94,12 @@ ActiveRecord::Schema.define(:version => 20100508105430) do
     t.integer  "market_group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "graphic_id"
+    t.integer  "item_group_id"
   end
 
+  add_index "item_types", ["graphic_id"], :name => "index_item_types_on_graphic_id"
+  add_index "item_types", ["item_group_id"], :name => "index_item_types_on_item_group_id"
   add_index "item_types", ["name", "market_group_id"], :name => "index_item_types_on_name_and_market_group_id"
 
   create_table "market_groups", :force => true do |t|

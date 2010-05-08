@@ -1,13 +1,14 @@
 Eve::Application.routes.draw do |map|
   get "static/faq"
-
   get "static/contact"
 
   get "debug/dump"
 
   get "tools/compare_items"
+  get "tools/fetch_children"
+  post "tools/add_or_remove"
 
-  # get "mining/calculator"
+  get "mining/ore_value"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -64,5 +65,5 @@ Eve::Application.routes.draw do |map|
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  match ':controller(/:action(/:id(.:format)))'
+  # match ':controller(/:action(/:id(.:format)))'
 end

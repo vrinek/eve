@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  item_type_id: 1
+  material_type_id: 1
+  quantity: 1
+
+two:
+  item_type_id: 1
+  material_type_id: 1
+  quantity: 1

@@ -45,8 +45,10 @@ a#logo {
   padding: 2px 4px;
 }
 #footer {
+  border-top: 1px solid white;
   font-size: 12px;
-  padding: 32px 24px 16px;
+  padding: 8px 24px 16px;
+  margin-top: 32px;
   text-align: right;
 }
 #footer p { margin-top: 4px; }
@@ -133,4 +135,43 @@ body.static#faq #main ul li { margin-bottom: 32px; }
 body.static#faq #main ul li p.question {
   color: #999999;
   margin-bottom: 8px;
+}
+body.mining#ore_value #market-prices {
+  font-size: 16px;
+  margin-left: 16px;
+}
+body.mining#ore_value #market-prices input {
+  width: 100px;
+  padding: 2px 4px;
+  text-align: right;
+  background-color: black;
+  color: #aaaaaa;
+  border: 1px solid #666666;
+}
+body.mining#ore_value #market-prices td { padding: 2px 4px; }
+body.mining#ore_value #market-prices th { text-align: center; }
+body.mining#ore_value #market-prices th img { vertical-align: middle; }
+body.mining#ore_value #ores { margin: 32px 0 0 16px; }
+body.mining#ore_value #ores th {
+  text-align: center;
+  min-width: 80px;
+  border-right: 1px solid black;
+  height: 64px;
+}
+body.mining#ore_value #ores th.isk {
+  text-align: right;
+  border-right: none;
+  vertical-align: bottom;
+  padding-bottom: 4px;
+  height: 60px;
+}
+body.mining#ore_value #ores td {
+  text-align: right;
+  border-left: 1px solid black;
+  padding: 2px 4px;
+}
+body.mining#ore_value #ores tr.odd td { background-color: #666666; }
+body.mining#ore_value #ores td.ore-name {
+  text-align: left;
+  border-left: none;
 }

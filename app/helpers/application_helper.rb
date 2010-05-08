@@ -16,4 +16,10 @@ module ApplicationHelper
       raw "<span class='current'>#{html}</span>"
     end
   end
+  
+  def request_trust
+    if is_igb? and !is_trusted?
+      "onload=\"CCPEVE.requestTrust('http://eve-box.com')\""
+    end
+  end
 end
