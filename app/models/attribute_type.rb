@@ -16,7 +16,7 @@ class AttributeType < ActiveRecord::Base
         :code                  => field("attributeName"),
         :high_is_good          => (field("highIsGood").to_i == 1),
         :attribute_unit_id     => field("unitID"),
-        :attribute_category_id => field("categoryID"),
+        :attribute_category_id => (field("categoryID").blank? ? AttributeCategory::NULL_CAT_ID : field("categoryID")),
         :graphic_id            => field("graphicID")
       }
     end

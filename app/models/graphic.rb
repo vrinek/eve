@@ -5,7 +5,7 @@ class Graphic < ActiveRecord::Base
   
   has_many :attribute_types
   
-  def icon_url(size = 16, url_base = URL_BASE)
+  def url(size = 16, url_base = URL_BASE)
     size = max_size if max_size and size > max_size
     url_base + "icons/#{size}_#{size}/icon#{icon}.png"
   end

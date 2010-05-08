@@ -30,23 +30,34 @@ a#logo {
 }
 
 #header {
-	padding: 16px 0 8px;
+	height: 128px;
 	margin-bottom: 16px;
-	height: 128px - (8px * 2);
-	
-	span.current {
-		color: #999;
-		background-color: black;
-		padding: 4px 6px;
-	}
-	
-	a {
-		padding: 4px 6px;
-		margin-right: 8px;
 
-		:hover {
-			border: 2px solid black;
-			padding: 2px 4px;
+	#navigation {
+		margin-left: 180px;
+		top: 16px;
+		position: relative;
+		
+		li {
+			background: #666;
+			padding: 8px;
+			margin-bottom: 4px;
+
+			span.current {
+				color: #999;
+				background-color: black;
+				padding: 4px 6px;
+			}
+
+			a {
+				padding: 4px 6px;
+				margin-right: 8px;
+
+				:hover {
+					border: 2px solid black;
+					padding: 2px 4px;
+				}
+			}
 		}
 	}
 }
