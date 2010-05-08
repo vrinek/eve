@@ -4,6 +4,7 @@ class AttributeType < ActiveRecord::Base
   
   belongs_to :attribute_unit
   belongs_to :attribute_category
+  belongs_to :graphic
   has_many :item_attributes
   
   class << self
@@ -14,8 +15,9 @@ class AttributeType < ActiveRecord::Base
         :name                  => field("displayName"),
         :code                  => field("attributeName"),
         :high_is_good          => (field("highIsGood").to_i == 1),
-        :attribute_unit_id     => field("unitID").to_i,
-        :attribute_category_id => field("categoryID").to_i
+        :attribute_unit_id     => field("unitID"),
+        :attribute_category_id => field("categoryID"),
+        :graphic_id            => field("graphicID")
       }
     end
 

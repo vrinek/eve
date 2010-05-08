@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100508085246) do
+ActiveRecord::Schema.define(:version => 20100508105430) do
 
   create_table "attribute_categories", :force => true do |t|
     t.string   "name"
@@ -25,10 +25,12 @@ ActiveRecord::Schema.define(:version => 20100508085246) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "attribute_category_id"
+    t.integer  "graphic_id"
   end
 
   add_index "attribute_types", ["attribute_category_id"], :name => "index_attribute_types_on_attribute_category_id"
   add_index "attribute_types", ["attribute_unit_id"], :name => "index_attribute_types_on_unit_id"
+  add_index "attribute_types", ["graphic_id"], :name => "index_attribute_types_on_graphic_id"
 
   create_table "attribute_units", :force => true do |t|
     t.string   "name"

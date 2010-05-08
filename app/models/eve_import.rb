@@ -55,7 +55,7 @@ class EveImport
       begin
         obj.attributes = atts
         obj.save
-      rescue
+      rescue => e
         to_retry[id] = atts if @model::EVE_ID_FIELD
       end
     end
