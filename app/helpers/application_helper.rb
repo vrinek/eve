@@ -1,5 +1,6 @@
 module ApplicationHelper
   def ingame_link_to_item(item_type_id)
+    item_type_id = item_type_id.id if item_type_id.is_a?(ItemType)
     link_to_function image_tag("info.png"), "CCPEVE.showInfo(#{item_type_id})", {:class => "ingame-item-info"} if is_igb?
   end
   
