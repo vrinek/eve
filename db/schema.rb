@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100503183257) do
+ActiveRecord::Schema.define(:version => 20100508085246) do
 
   create_table "attribute_categories", :force => true do |t|
     t.string   "name"
@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(:version => 20100503183257) do
   create_table "attribute_units", :force => true do |t|
     t.string   "name"
     t.string   "display"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "graphics", :force => true do |t|
+    t.string   "icon"
+    t.string   "description"
+    t.integer  "max_size"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

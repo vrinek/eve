@@ -87,5 +87,7 @@ class EveImport
         puts "ERROR: could not save the following ids\n\t#{keys.inspect}"
       end
     end
+    
+    @model.fix_after_import if @model.respond_to?(:fix_after_import)
   end
 end
