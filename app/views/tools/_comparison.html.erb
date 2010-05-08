@@ -20,7 +20,7 @@
 		<% end %>
 		<tr data-code="<%= attribute.code %>" class="attribute <%= cycle "odd", "even" %>">
 			<th class="name">
-				<%= image_tag attribute.graphic.url if attribute.graphic %>
+				<%= image_tag attribute.graphic.url, :size => "16x16" if attribute.graphic %>
 				<%= attribute.name.blank? ? attribute.code : attribute.name %>
 				<% unless attribute.attribute_unit.display.blank? %>
 					<small>(<%= attribute.attribute_unit.display %>)</small>
