@@ -1,23 +1,30 @@
-<table id="market-prices">
-	<thead>
-		<tr>
-			<% @minerals.each do |mineral| %>
-				<th>
-					<%= image_tag mineral.graphic.url(32) %>
-					<%= mineral.name %>
-					<%= ingame_link_to_item mineral %>
-				</th>
-			<% end %>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<% @minerals.each do |mineral| %>
-				<td><%= text_field_tag "mineral-"+mineral.name, @prices[mineral.id], {:onkeyup => "updatePrices()"} %></td>
-			<% end %>
-		</tr>
-	</tbody>
-</table>
+<%= form_tag({:action => "save_prices"}, {:remote => true}) do %>
+	<table id="market-prices">
+		<thead>
+			<tr>
+				<% @minerals.each do |mineral| %>
+					<th>
+						<%= image_tag mineral.graphic.url(32) %>
+						<%= mineral.name %>
+						<%= ingame_link_to_item mineral %>
+					</th>
+				<% end %>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<% @minerals.each do |mineral| %>
+					<td><%= text_field_tag "mineral-"+mineral.name, @prices[mineral.id], {:onkeyup => "updatePrices()"} %></td>
+				<% end %>
+			</tr>
+			<tr>
+				<td colspan="<%= @minerals.size %>">
+					<%= submit_tag "Save prices#{' (2 weeks)' unless is_igb?}" %>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+<% end %>
 
 <table id="ores">
 	<thead>
@@ -34,7 +41,10 @@
 	<tbody>
 		<% @basic_ores.each do |ore, composition| %>
 		 <tr class="<%= cycle 'odd', 'even' %>">
-			<td class="ore-name"><%= ore.name %><%= ingame_link_to_item ore %></td>
+			<td class="ore-name">
+				<%= ingame_link_to_item ore %>
+				<%= ore.name %>
+			</td>
 			<% @minerals.each do |mineral| %>
 				<td class="value"><%= composition[mineral] %></td>
 			<% end %>

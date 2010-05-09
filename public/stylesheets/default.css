@@ -148,6 +148,11 @@ body.mining#ore_value #market-prices input {
   color: #aaaaaa;
   border: 1px solid #666666;
 }
+body.mining#ore_value #market-prices input:hover { color: white; }
+body.mining#ore_value #market-prices input[type=submit] {
+  width: 180px;
+  text-align: center;
+}
 body.mining#ore_value #market-prices td { padding: 2px 4px; }
 body.mining#ore_value #market-prices th { text-align: center; }
 body.mining#ore_value #market-prices th img { vertical-align: middle; }
@@ -175,3 +180,8 @@ body.mining#ore_value #ores td.ore-name {
   text-align: left;
   border-left: none;
 }
+body.mining#ore_value #ores td.ore-name a.ingame-item-info {
+  float: right;
+  margin-left: 8px;
+}
+body.mining#ore_value #ores td.ore-name a.ingame-item-info img { vertical-align: middle; }

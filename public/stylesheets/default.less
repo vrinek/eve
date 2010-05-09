@@ -231,6 +231,15 @@ body.mining#ore_value {
 			background-color: black;
 			color: #aaa;
 			border: 1px solid #666;
+			
+			:hover {
+				color: white;
+			}
+		}
+		
+		input[type=submit] {
+			width: 180px;
+			text-align: center;
 		}
 		
 		td {
@@ -277,6 +286,15 @@ body.mining#ore_value {
 		td.ore-name {
 			text-align: left;
 			border-left: none;
+			
+			a.ingame-item-info {
+				float: right;
+				margin-left: 8px;
+				
+				img {
+					vertical-align: middle;
+				}
+			}
 		}
 	}
 }

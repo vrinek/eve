@@ -24,6 +24,14 @@ class StaticController < ApplicationController
       {
         :q => "Will you add XYZ feature?",
         :a => "If it is possible, why not? Contact me and I'll consider it."
+      },
+      {
+        :q => "The \"Ore value\" tool seems awfully familiar...",
+        :a => "That's cause it's almost a copy from http://eve.grismar.net/ore/ except mine is javascript and can also save the prices to a cookie"
+      },
+      {
+        :q => "Why can't I save my prices from the in-game browser?",
+        :a => "The in-game browser does not support cookies the same way that other browsers do (at least not at the time I'm writing this)"
       }
     ]
     

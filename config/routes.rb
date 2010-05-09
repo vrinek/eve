@@ -9,6 +9,7 @@ Eve::Application.routes.draw do |map|
   post "tools/add_or_remove"
 
   get "mining/ore_value"
+  post "mining/save_prices"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
