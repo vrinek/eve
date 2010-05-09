@@ -1,5 +1,5 @@
 class DebugController < ApplicationController
-  def dump
+  def exception
+    raise "This raises an exception"
   end
-
 end

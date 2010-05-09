@@ -3,6 +3,7 @@ Eve::Application.routes.draw do |map|
   get "static/contact"
 
   get "debug/dump"
+  get "debug/exception"
 
   get "tools/compare_items"
   get "tools/fetch_children"
