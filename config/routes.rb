@@ -8,19 +8,19 @@ Eve::Application.routes.draw do |map|
   get "debug/dump"
   get "debug/exception"
 
-  get "item_comparison", :to => 'tools#compare_items'
+  get "item-comparison", :to => 'tools#compare_items'
   get "tools/fetch_children"
   post "tools/add_or_remove"
 
-  get "ore_value", :to => 'mining#ore_value'
+  get "ore-value", :to => 'mining#ore_value'
   post "mining/save_prices"
   
   # old URL redirection
   get "static/faq", :to => redirect("/faq")
   get "static/contact", :to => redirect("/contact")
   get "static/copyright", :to => redirect("/copyright")
-  get "tools/compare_items", :to => redirect('/item_comparison')
-  get "mining/ore_value", :to => redirect('/ore_value')
+  get "tools/compare_items", :to => redirect('/item-comparison')
+  get "mining/ore_value", :to => redirect('/ore-value')
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
