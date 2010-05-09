@@ -37,4 +37,8 @@ class StaticController < ApplicationController
     
     @title = "F.A.Q."
   end
+  
+  def copyright
+    @title = "Copyright Notice"
+  end
 end

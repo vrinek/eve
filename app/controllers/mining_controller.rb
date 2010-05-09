@@ -2,6 +2,9 @@ class MiningController < ApplicationController
   before_filter :fetch_minerals
   
   def ore_value
+    @title = "Ore Value Calculator"
+    @description = "A calculator tool that helps you find out which ore is best to mine for optimal profit in the EVE Online MMORPG"
+    
     ores = ItemCategory.find(25).item_groups.collect{|g| g.item_types.select{|i| i.name == g.name}}.flatten.sort_by(&:name).reverse
     
     @basic_ores = ores.inject({}) do |hash, ore|

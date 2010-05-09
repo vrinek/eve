@@ -1,19 +1,26 @@
 Eve::Application.routes.draw do |map|
-  get "static/faq"
-  get "static/contact"
+  root :to => "welcome#home"
+
+  get "faq", :to => 'static#faq'
+  get "contact", :to => 'static#contact'
+  get "copyright", :to => 'static#copyright'
 
   get "debug/dump"
   get "debug/exception"
 
-  get "tools/compare_items"
+  get "item_comparison", :to => 'tools#compare_items'
   get "tools/fetch_children"
   post "tools/add_or_remove"
 
-  get "mining/ore_value"
+  get "ore_value", :to => 'mining#ore_value'
   post "mining/save_prices"
-
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
+  
+  # old URL redirection
+  get "static/faq", :to => redirect("/faq")
+  get "static/contact", :to => redirect("/contact")
+  get "static/copyright", :to => redirect("/copyright")
+  get "tools/compare_items", :to => redirect('/item_comparison')
+  get "mining/ore_value", :to => redirect('/ore_value')
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
@@ -59,9 +66,6 @@ Eve::Application.routes.draw do |map|
   #     resources :products
   #   end
 
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  root :to => "welcome#home"
 
   # See how all your routes lay out with "rake routes"
 
