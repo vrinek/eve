@@ -36,9 +36,15 @@ class StaticController < ApplicationController
     ]
     
     @title = "F.A.Q."
+    @icon = "07_15"
   end
   
   def copyright
     @title = "Copyright Notice"
+    @icon = "07_08"
+  end
+  
+  def contact
+    @icon = "07_14"
   end
 end

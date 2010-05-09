@@ -83,6 +83,12 @@ h1 {
 	padding: 2px 0 4px 16px;
 	margin-bottom: 28px;
 	border-bottom: 1px solid white;
+	height: 64px;
+	
+	img.icon {
+		position: relative;
+		top: 24px;
+	}
 }
 
 body.tools#compare_items {
@@ -295,6 +301,40 @@ body.mining#ore_value {
 				img {
 					vertical-align: middle;
 				}
+			}
+		}
+	}
+}
+
+body.welcome#home #main {
+	ul#tool-links {
+		height: 150px;
+		margin: 80px;
+		
+		li {
+			float: left;
+			height: 150px;
+			width: 150px;
+			font-size: 12px;
+			text-align: center;
+			margin-right: 16px;
+			
+			img, a {
+				display: block;
+			}
+			
+			img {
+				margin-left: (150px - 128px)/2;
+			}
+			
+			a {
+				height: 150px;
+				width: 150px;
+			}
+			
+			a:hover {
+				background-color: #666;
+				color: white;
 			}
 		}
 	}

@@ -4,6 +4,7 @@ class ToolsController < ApplicationController
   def compare_items
     @title = "Item Comparison Tool"
     @description = "A tool that allows you to put side by side a few items from the EVE Online MMORPG for easy comparison of their attributes"
+    @icon = "33_03"
     
     @roots = MarketGroup.all(:conditions => {:ancestry => nil}, :order => "name ASC")
     @depth = 0

@@ -12,7 +12,10 @@
 	<%= render "application/header" %>
 	
 	<div id="main">
-		<h1><%= @title %></h1>
+		<h1>
+			<%= image_tag(Graphic.url(@icon, 64), :class => "icon", :size => "64x64") if @icon %>
+			<%= @title %>
+		</h1>
 		<%= yield %>
 	</div>
 	

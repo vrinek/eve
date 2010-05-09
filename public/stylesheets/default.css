@@ -60,6 +60,11 @@ h1 {
   padding: 2px 0 4px 16px;
   margin-bottom: 28px;
   border-bottom: 1px solid white;
+  height: 64px;
+}
+h1 img.icon {
+  position: relative;
+  top: 24px;
 }
 body.tools#compare_items #browse_groups {
   height: 300px;
@@ -191,3 +196,26 @@ body.mining#ore_value #ores td.ore-name a.ingame-item-info {
   margin-left: 8px;
 }
 body.mining#ore_value #ores td.ore-name a.ingame-item-info img { vertical-align: middle; }
+body.welcome#home #main ul#tool-links {
+  height: 150px;
+  margin: 80px;
+}
+body.welcome#home #main ul#tool-links li {
+  float: left;
+  height: 150px;
+  width: 150px;
+  font-size: 12px;
+  text-align: center;
+  margin-right: 16px;
+}
+body.welcome#home #main ul#tool-links li img { display: block; }
+body.welcome#home #main ul#tool-links li a { display: block; }
+body.welcome#home #main ul#tool-links li img { margin-left: 11px; }
+body.welcome#home #main ul#tool-links li a {
+  height: 150px;
+  width: 150px;
+}
+body.welcome#home #main ul#tool-links li a:hover {
+  background-color: #666666;
+  color: white;
+}
