@@ -17,10 +17,10 @@
 		li = $$('#browse_groups li.item_type[data-item-id="'+itemId+'"]')[0];
 		if(shownIds.indexOf(itemId) == -1){
 			shownIds.push(itemId);
-			li.addClassName('shown');
+			if(li){li.addClassName('shown');};
 		}else{
 			shownIds = shownIds.without(itemId);
-			li.removeClassName('shown');
+			if(li){li.removeClassName('shown');};
 		};
 		
 		<%=raw remote_function(:url => {:action => "add_or_remove"}, :with => "'shown_ids='+shownIds.join(',')") %>

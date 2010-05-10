@@ -1,1 +1,1 @@
-$('comparison').update('<%= escape_javascript render(:partial => "comparison", :items => @items) %>');
+$('comparison').update('<%= @items.empty? ? "" : escape_javascript(render(:partial => "comparison", :items => @items)) %>');

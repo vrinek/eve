@@ -108,18 +108,27 @@ body.tools#compare_items #comparison table td {
   border-left: 1px solid white;
 }
 body.tools#compare_items #comparison table th { padding: 2px; }
-body.tools#compare_items #comparison table tr.items th.name { padding: 2px 8px; }
-body.tools#compare_items #comparison table tr.items th.name span {
-  white-space: nowrap;
-  margin-right: 20px;
+body.tools#compare_items #comparison table tr.items th.name {
+  padding: 2px 8px;
+  width: 100px;
+  text-align: center;
 }
-body.tools#compare_items #comparison table tr.items th.name a.ingame-item-info { float: right; }
+body.tools#compare_items #comparison table tr.items th.name a.ingame-item-info img { vertical-align: middle; }
+body.tools#compare_items #comparison table tr.items th.name div.name { min-height: 40px; }
+body.tools#compare_items #comparison table tr.items th.name div.remove {
+  font-size: 12px;
+  text-align: right;
+}
+body.tools#compare_items #comparison table tr.items th.name div.remove a:hover { color: red; }
 body.tools#compare_items #comparison table tr.category th {
   font-size: 18px;
   border-bottom: 2px solid white;
   padding: 16px 0 0 48px;
 }
-body.tools#compare_items #comparison table tr.attribute th.name { padding: 2px 8px 2px 4px; }
+body.tools#compare_items #comparison table tr.attribute th.name {
+  padding: 2px 8px 2px 4px;
+  width: 120px;
+}
 body.tools#compare_items #comparison table tr.attribute.odd th { background-color: black; }
 body.tools#compare_items #comparison table tr.attribute.odd td { background-color: black; }
 body.tools#compare_items #comparison table tr.attribute.even th { background-color: #222222; }

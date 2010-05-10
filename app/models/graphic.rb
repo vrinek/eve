@@ -51,5 +51,9 @@ class Graphic < ActiveRecord::Base
     def url(icon, size)
       URL_BASE + "icons/#{size}_#{size}/icon#{icon}.png"
     end
+    
+    def alt_url(id, size)
+      URL_BASE + "types/#{size}_#{size}/#{id}.png"
+    end
   end
 end

@@ -5,8 +5,12 @@
 		<th></th>
 		<% @items.each do |item| %>
 			<th class="name">
-				<%= ingame_link_to_item item.id %>
-				<span><%= item.name %></span>
+				<div class="graphic"><%= graphic_tag_for(item, 64) %></div>
+				<div class="name">
+					<%= item.name %>
+					<%= ingame_link_to_item item.id %>
+				</div>
+				<div class="remove"><%= link_to "remove", '#', :onclick => "itemChecked(#{item.id}); return false;" %></div>
 			</th>
 		<% end %>
 	</tr>

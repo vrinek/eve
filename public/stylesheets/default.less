@@ -160,14 +160,24 @@ body.tools#compare_items {
 			tr.items {
 				th.name {
 					padding: 2px 8px;
+					width: 100px;
+					text-align: center;
 					
-					span {
-						white-space: nowrap;
-						margin-right: 20px;
+					a.ingame-item-info img {
+						vertical-align: middle;
 					}
 					
-					a.ingame-item-info {
-						float: right;
+					div.name {
+						min-height: 40px;
+					}
+					
+					div.remove {
+						font-size: 12px;
+						text-align: right;
+						
+						a:hover {
+							color: red;
+						}
 					}
 				}
 			}
@@ -181,6 +191,7 @@ body.tools#compare_items {
 			tr.attribute {
 				th.name {
 					padding: 2px 8px 2px 4px;
+					width: 120px;
 				}
 			}
 			
