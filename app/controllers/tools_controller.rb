@@ -36,6 +36,12 @@ class ToolsController < ApplicationController
     @all_attribute_types = @all_attribute_types.sort_by(&:attribute_category_id)
   end
   
+  def calculator
+    @title = "Contract Calculator"
+    @description = "A simple summarization calculator to help with creating contracts of multiple items in teh EVE Online MMORPG"
+    @icon = "17_02"
+  end
+  
   private
   
   def parse_shown_ids

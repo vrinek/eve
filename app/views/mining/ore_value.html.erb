@@ -1,3 +1,8 @@
+<p class="tip">
+	Edit the mineral values to reflect the prices available to you.<br>
+	Ore values are calculated in real time.
+</p>
+
 <%= form_tag({:action => "save_prices"}, {:remote => true}) do %>
 	<table id="market-prices">
 		<thead>
@@ -19,7 +24,7 @@
 			</tr>
 			<tr>
 				<td colspan="<%= @minerals.size %>">
-					<%= submit_tag "Save prices#{' (2 weeks)' unless is_igb?}" %>
+					<%= submit_tag "Save prices (#{is_igb? ? 'this session' : '2 weeks'})" %>
 				</td>
 			</tr>
 		</tbody>

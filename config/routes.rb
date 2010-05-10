@@ -9,6 +9,7 @@ Eve::Application.routes.draw do |map|
   get "debug/exception"
 
   get "item-comparison", :to => 'tools#compare_items'
+  get "simple-calculator", :to => 'tools#calculator'
   get "tools/fetch_children"
   post "tools/add_or_remove"
 
