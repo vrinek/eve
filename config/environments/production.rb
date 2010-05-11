@@ -39,4 +39,6 @@ Eve::Application.configure do
 
   # Enable threaded mode
   # config.threadsafe!
+  
+  config.middleware.insert_after 'ActionDispatch::ShowExceptions', HoptoadNotifier::Rack
 end
