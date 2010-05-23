@@ -1,7 +1,7 @@
 <p class="tip">
 	Add new lines as you see fit to contain all items of the contract.<br>
 	Results and total are calculated in real time.<br>
-	The item names are not used in the calculations.
+	The item names are not used in the calculations and are there only for your convenience.
 </p>
 
 <ul id="calculations">
@@ -23,9 +23,17 @@
 	
 	addNewLine = function(){
 		id = lastLineId + 1;
+		liHTML = '<li class="calculation" id="calculation-'+id+'">\
+			<span class="result">0.00</span>\
+			<input type="text" class="label" value="Item name">\
+			<input type="text" value="0.00" class="price" onkeyup="calculateResult('+id+')" onblur="numFor(this, 2)" onfocus="invNumFor(this)">\
+			&times;\
+			<input type="text" value="0" class="quantity" onkeyup="calculateResult('+id+')" onblur="numFor(this)" onfocus="invNumFor(this)">\
+			=\
+		</li>'
 		
 		$('total').insert({
-			before: '<li class="calculation" id="calculation-'+id+'"><span class="result">0.00</span><input type="text" class="label" value="Item name"><input type="text" value="0.00" class="price" onkeyup="calculateResult('+id+')">&times;<input type="text" value="0" class="quantity" onkeyup="calculateResult('+id+')">=</li>'
+			before: liHTML
 		});
 		$$('#calculation-'+id+' .label')[0].focus();
 		lastLineId = id;
@@ -34,12 +42,26 @@
 	addNewLine();
 	
 	calculateResult = function(id){
-		previousResult = new Number($$('#calculation-'+id+' .result')[0].innerHTML);
-		newResult = new Number(($$('#calculation-'+id+' .price')[0].value * $$('#calculation-'+id+' .quantity')[0].value));
+		// recalculate the new result of the changed line
+		price = $$('#calculation-'+id+' .price')[0].value.replace(/[^\d\.]/g, '');
+		quantity = $$('#calculation-'+id+' .quantity')[0].value.replace(/[^\d\.]/g, '');
+		newResult = new Number(price * quantity);
+		$$('#calculation-'+id+' .result')[0].innerHTML = number_format(newResult, 2);
 		
-		total = total - previousResult + newResult;
+		// recalculate the total sum from all the lines (less error prone)
+		total = 0;
+		$$('li.calculation .result').each(function(result){
+			total = total + new Number(result.innerHTML.replace(/[^\d\.]/g, ''));
+		});
 		
-		$$('#calculation-'+id+' .result')[0].innerHTML = newResult.toFixed(2);
-		$$('#total .result')[0].innerHTML = total.toFixed(2);
+		$$('#total .result')[0].innerHTML = number_format(total, 2);
+	};
+	
+	numFor = function(element, decimals){
+		element.value = number_format(element.value.replace(/[^\d\.]/g, ''), decimals)
+	};
+	
+	invNumFor = function(element){
+		element.value = element.value.replace(/[^\d\.]/g, '')
 	};
 </script>
