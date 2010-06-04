@@ -20,11 +20,11 @@ class Graphic < ActiveRecord::Base
     end
 
     def field(name)
-      (@row%"field[@name='#{name}']").content
+      (@row%name).content
     end
     
     def fix_after_import
-      local_base = "#{`echo ~`.strip}/Downloads/Dominion_1.1_imgs/"
+      local_base = "#{`echo ~`.strip}/Downloads/Tyrannis_1.0.1_imgs/"
       sizes = [16, 32, 64, 128]
 
       find_each do |graphic|

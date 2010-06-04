@@ -2,52 +2,40 @@ class EveImport
   attr_reader :imported
   
   DATA_FOLDER = File.join(RAILS_ROOT, "tmp/dump_data")
+  VERSION = 'tyr101'
   
   def initialize(model)
     @model = model
   end
   
   def get_xml
-    name = "dom111-#{@model::EVE_TABLE_NAME}-mysql5-v1.xml"
-    local = File.join(DATA_FOLDER, name)
+    local_combo = File.join(DATA_FOLDER, "#{VERSION}-#{@model::EVE_TABLE_NAME[0..2]}.xml")
+    local_table = File.join(DATA_FOLDER, "#{VERSION}-#{@model::EVE_TABLE_NAME}.xml")
 
-    unless File.exists?(local)
-      FileUtils.makedirs(DATA_FOLDER)
-      
-      puts "\tDownloading..."
-      
-      domain = "eve.no-ip.de"
-      rest_of_url = "/dom111/dom111-mysql5-xml-v1/#{name}.bz2"
-      
-      unless `which wget`.blank? # in other words, if we have wget installed
-        system "wget http://#{domain}#{rest_of_url} -O #{local}.bz2"
-      else
-        Net::HTTP.start(domain) { |http|
-          resp = http.get(rest_of_url)
-          open(local+".bz2", "wb") { |file|
-            file.write(resp.body)
-          }
-        }
-      end
-
-      system "bunzip2 #{local}.bz2"
+    if File.exists?(local_table)
+      local = local_table
+    elsif File.exists?(local_combo)
+      local = local_combo
+    else
+      raise "Can't find the XML file"
     end
     
+    puts "\tusing: #{local}"
     @xml = Nokogiri::XML open(local).read
   end
   
   def total
-    (@xml.root/"table_data/row").size
+    (@xml.root/"#{@model::EVE_TABLE_NAME}/row").size
   end
   
   def save
     to_retry = {}
     
-    (@xml.root/"table_data/row").each do |row|
+    (@xml.root/"#{@model::EVE_TABLE_NAME}/row").each do |row|
       obj = @model.new
       
       if @model::EVE_ID_FIELD
-        id = (row%"field[@name='#{@model::EVE_ID_FIELD}']").content.to_i
+        id = (row%"#{@model::EVE_ID_FIELD}").content.to_i
         obj.id = id
       end
       atts = @model.translate(row)

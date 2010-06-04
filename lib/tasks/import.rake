@@ -1,4 +1,4 @@
-namespace :eve_dump do
+namespace :eve do
   desc "Imports an EVE SQL dump table to the database"
   task :import, :model, :needs => :environment do |t, args|
     unless args[:model] == "all" or args[:model].blank?
@@ -13,6 +13,7 @@ namespace :eve_dump do
         ItemCategory,
         ItemGroup,
         ItemType,
+        ItemTypeMaterial,
         MarketGroup
       ]
     end

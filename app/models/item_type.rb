@@ -35,7 +35,7 @@ class ItemType < ActiveRecord::Base
     end
 
     def field(name)
-      (@row%"field[@name='#{name}']").content
+      (@row%name).content
     end
   end
 end
