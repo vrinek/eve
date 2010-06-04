@@ -24,7 +24,7 @@
 			</tr>
 			<tr>
 				<td colspan="<%= @minerals.size %>">
-					<%= submit_tag "Save prices (#{is_igb? ? 'this session' : '2 weeks'})" %>
+					<%= submit_tag "Save prices (2 weeks)" unless is_igb? %>
 				</td>
 			</tr>
 		</tbody>
