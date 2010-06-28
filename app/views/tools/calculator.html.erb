@@ -5,7 +5,7 @@
 </p>
 
 <div id="save-bar">
-  <%= link_to "Save this contract", {:controller => 'contracts', :action => 'save'}, {:remote => true, 'data-with' => "'contract_json='+contractJSON()", :id => 'save-this'} %>
+  <%= link_to "Save this contract", {:controller => 'contracts', :action => 'save'}, {:remote => true, 'data-with' => "'contract_json='+contractJSON()", 'data-loading' => "$('link-to-this').hide(); $('save-this').innerHTML = 'Saving...'", :id => 'save-this'} %>
   <%= link_to "Link to this contract", {:key => (@contract ? @contract.key : nil)}, {:style => (@contract ? '' : 'display:none'), :id => 'link-to-this'} %>
 </div>
 

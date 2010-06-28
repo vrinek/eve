@@ -76,6 +76,11 @@ function fixRemoteLinks(){
             url = href.split('?')[0];
             params = href.split('?')[1];
             newParam = encodeURI(eval(a.getAttribute('data-with')));
+            
+            loading = a.getAttribute('data-loading')
+            if(loading){
+                eval(loading);
+            };
 
             if(params){
                 params = params.split('&');
