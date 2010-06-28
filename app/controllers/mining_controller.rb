@@ -6,7 +6,7 @@ class MiningController < ApplicationController
     @description = "A calculator tool that helps you find out which ore is best to mine for optimal profit in the EVE Online MMORPG"
     @icon = "32_02"
     
-    @basic_ores = ItemCategory::BASIC_ORES
+    @basic_ores = ItemCategory.basic_ores
     
     initial_prices = {
       "Tritanium" => 2.0,
@@ -43,6 +43,6 @@ class MiningController < ApplicationController
   private
   
   def fetch_minerals
-    @minerals = MineralValueSet::MINERALS
+    @minerals = MineralValueSet.minerals
   end
 end

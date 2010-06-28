@@ -4,18 +4,6 @@ class ItemCategory < ActiveRecord::Base
   
   has_many :item_groups
 
-  ores = self.find(25).item_groups.collect{ |g|
-    g.item_types.select{ |i|
-      i.name == g.name
-    }
-  }
-  ores = ores.flatten.sort_by(&:name).reverse
-  
-  BASIC_ORES = ores.inject({}) do |hash, ore|
-    hash[ore] = ore.composition
-    hash
-  end
-  
   class << self
     def translate(row)
       @row = row
@@ -28,6 +16,24 @@ class ItemCategory < ActiveRecord::Base
 
     def field(name)
       (@row%name).content
+    end
+    
+    def basic_ores
+      return @basic_ores if @basic_ores
+      
+      ores = find(25).item_groups.collect{ |g|
+        g.item_types.select{ |i|
+          i.name == g.name
+        }
+      }
+      ores = ores.flatten.sort_by(&:name).reverse
+
+      @basic_ores = ores.inject({}) do |hash, ore|
+        hash[ore] = ore.composition
+        hash
+      end
+      
+      @basic_ores
     end
   end
 end
