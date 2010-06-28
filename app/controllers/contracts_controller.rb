@@ -4,5 +4,7 @@ class ContractsController < ApplicationController
     unless @contract.save
       @contract = nil
     end
+  rescue
+    @contract = nil
   end
 end
