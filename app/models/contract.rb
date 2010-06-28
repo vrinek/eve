@@ -1,21 +1,5 @@
-class Contract < ActiveRecord::Base
-  DIGITS = ('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a + %w{+ -}
-  
-  validate :data_is_valid
-  
-  def self.new_from(json)
-    contract = Contract.new
-    contract.create_key
-    contract.json = json
-    contract
-  end
-  
-  def create_key
-    self.key = String.new
-    16.times do
-      self.key += DIGITS[rand(DIGITS.size)].to_s
-    end
-  end
+class Contract < JsonStore
+  set_table_name :contracts
   
   def data_is_valid
     json = JSON.restore data
@@ -31,9 +15,5 @@ class Contract < ActiveRecord::Base
         'quantity' => h['quantity'].to_i
       }
     }.to_json
-  end
-  
-  def restore
-    JSON.restore data
   end
 end

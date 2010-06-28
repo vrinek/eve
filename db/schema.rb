@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100628110559) do
+ActiveRecord::Schema.define(:version => 20100628182205) do
 
   create_table "attribute_categories", :force => true do |t|
     t.string   "name"
@@ -119,5 +119,14 @@ ActiveRecord::Schema.define(:version => 20100628110559) do
   end
 
   add_index "market_groups", ["ancestry"], :name => "index_market_groups_on_ancestry"
+
+  create_table "mineral_value_sets", :force => true do |t|
+    t.string   "key"
+    t.string   "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mineral_value_sets", ["key"], :name => "index_mineral_value_sets_on_key"
 
 end

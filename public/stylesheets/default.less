@@ -385,7 +385,7 @@ body.mining#ore_value {
 			background-color: #666;
 		}
 		
-		td.ore-name {
+		tr.ore td.name {
 			text-align: left;
 			border-left: none;
 			
@@ -435,18 +435,27 @@ body.welcome#home #main {
 	}
 }
 
-a#save-this {
-	border: 1px solid #666;
-    background-color: black;
-    padding: 2px 4px;
-    margin: 2px 8px;
+#save-bar {
+    border: 1px solid silver;
+    border-left: none;
+    border-right: none;
+    background-color: #222;
+    padding: 12px;
+    margin: 4px 0;
     
-    :hover {
-        background-color: #333;
-        color: white;
-    }
-}
+    a#save-this {
+    	border: 1px solid #666;
+        background-color: black;
+        padding: 2px 4px;
+        margin: 2px 8px;
 
-a#link-to-this {
-	font-family: monospace;
+        :hover {
+            background-color: #333;
+            color: white;
+        }
+    }
+
+    a#link-to-this {
+    	font-family: monospace;
+    }
 }

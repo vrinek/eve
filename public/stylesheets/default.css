@@ -252,15 +252,15 @@ body.mining#ore_value #ores td {
   padding: 2px 4px;
 }
 body.mining#ore_value #ores tr.odd td { background-color: #666666; }
-body.mining#ore_value #ores td.ore-name {
+body.mining#ore_value #ores tr.ore td.name {
   text-align: left;
   border-left: none;
 }
-body.mining#ore_value #ores td.ore-name a.ingame-item-info {
+body.mining#ore_value #ores tr.ore td.name a.ingame-item-info {
   float: right;
   margin-left: 8px;
 }
-body.mining#ore_value #ores td.ore-name a.ingame-item-info img { vertical-align: middle; }
+body.mining#ore_value #ores tr.ore td.name a.ingame-item-info img { vertical-align: middle; }
 body.welcome#home #main ul#tool-links {
   height: 150px;
   margin: 80px;
@@ -284,14 +284,22 @@ body.welcome#home #main ul#tool-links li a:hover {
   background-color: #666666;
   color: white;
 }
-a#save-this {
+#save-bar {
+  border: 1px solid silver;
+  border-left: none;
+  border-right: none;
+  background-color: #222222;
+  padding: 12px;
+  margin: 4px 0;
+}
+#save-bar a#save-this {
   border: 1px solid #666666;
   background-color: black;
   padding: 2px 4px;
   margin: 2px 8px;
 }
-a#save-this:hover {
+#save-bar a#save-this:hover {
   background-color: #333333;
   color: white;
 }
-a#link-to-this { font-family: monospace; }
+#save-bar a#link-to-this { font-family: monospace; }

@@ -1,35 +1,34 @@
 <p class="tip">
 	Edit the mineral values to reflect the prices available to you.<br>
-	Ore values are calculated in real time.
+	Ore values are calculated in real time.<br>
+	Saving mineral prices gives you a url which you can share with others.
 </p>
 
-<%= form_tag({:action => "save_prices"}, {:remote => true}) do %>
-	<table id="market-prices">
-		<thead>
-			<tr>
-				<% @minerals.each do |mineral| %>
-					<th>
-						<%= image_tag mineral.graphic.url(32) %>
-						<%= mineral.name %>
-						<%= ingame_link_to_item mineral %>
-					</th>
-				<% end %>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<% @minerals.each do |mineral| %>
-					<td><%= text_field_tag "mineral-"+mineral.name, @prices[mineral.id], {:onkeyup => "updatePrices()"} %></td>
-				<% end %>
-			</tr>
-			<tr>
-				<td colspan="<%= @minerals.size %>">
-					<%= submit_tag "Save prices (2 weeks)" unless is_igb? %>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-<% end %>
+<table id="market-prices">
+  <thead>
+    <tr>
+      <% @minerals.each do |mineral| %>
+      <th>
+        <%= image_tag mineral.graphic.url(32) %>
+        <%= mineral.name %>
+        <%= ingame_link_to_item mineral %>
+      </th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% @minerals.each do |mineral| %>
+      <td><%= text_field_tag "mineral-"+mineral.name, @prices[mineral.name], {:onkeyup => "updatePrices()"} %></td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+
+<div id="save-bar">
+  <%= link_to "Save these prices", {:controller => 'mining', :action => 'save'}, {:remote => true, 'data-with' => "'minerals_json='+mineralJSON()", 'data-loading' => "$('link-to-this').hide(); $('save-this').innerHTML = 'Saving...'", :id => 'save-this'} %>
+  <%= link_to "Link to these prices", {:key => (@mineral_value_set ? @mineral_value_set.key : nil)}, {:style => (@mineral_value_set ? '' : 'display:none'), :id => 'link-to-this'} %>
+</div>
 
 <table id="ores">
 	<thead>
@@ -45,8 +44,8 @@
 	</thead>
 	<tbody>
 		<% @basic_ores.each do |ore, composition| %>
-		 <tr class="<%= cycle 'odd', 'even' %>">
-			<td class="ore-name">
+		 <tr class="<%= cycle 'odd', 'even' %> ore">
+			<td class="name">
 				<%= ingame_link_to_item ore %>
 				<%= ore.name %>
 			</td>
@@ -68,6 +67,15 @@
 		<% end %>
 		
 		return false;
+	};
+
+	mineralJSON = function(){
+	  values = new Hash;
+	  <% @minerals.each do |mineral| %>
+      values.set('<%= mineral.name %>', new Number($F('mineral-<%= mineral.name %>')));
+    <% end %>
+	  
+	  return values.toJSON();
 	};
 	
 	updatePrices();

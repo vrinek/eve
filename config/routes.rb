@@ -13,8 +13,7 @@ Eve::Application.routes.draw do |map|
   get "tools/fetch_children"
   post "tools/add_or_remove"
 
-  get "ore", :to => 'mining#ore_value'
-  post "mining/save_prices"
+  get "ore(/:key)", :to => 'mining#ore_value'
   
   # old URL redirection
   get "static/faq", :to => redirect("/faq")

@@ -1,6 +1,6 @@
 page.replace_html 'save-this', 'Save this contract'
 if @contract
-  page.replace 'link-to-this', link_to('Link to this contract', {:controller => 'tools', :action => 'calculator', :key => @contract.key}, {:id => 'link-to-this'})
+  page.replace 'link-to-this', link_to("Link to this contract (#{@contract.key})", {:controller => 'tools', :action => 'calculator', :key => @contract.key}, {:id => 'link-to-this'})
 else
   page.replace 'link-to-this', '<span id="link-to-this">Could not save contract</span>'
 end
