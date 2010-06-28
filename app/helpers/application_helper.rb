@@ -15,14 +15,16 @@ module ApplicationHelper
   end
   
   def nav_link(html, url)
-    link_to_unless_current(html, url) do
+    unless controller.controller_name == url[:controller] and controller.action_name == url[:action]
+      link_to(html, url)
+    else
       raw "<span class='current'>#{html}</span>"
     end
   end
   
   def request_trust
     if is_igb? and !is_trusted?
-      "onload=\"CCPEVE.requestTrust('http://eve-box.com')\""
+      "CCPEVE.requestTrust('http://eve-box.com')"
     end
   end
   

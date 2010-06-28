@@ -68,3 +68,30 @@ function number_format(number, decimals, dec_point, thousands_sep) {
     }
     return s.join(dec);
 }
+
+function fixRemoteLinks(){
+    $$('a[data-remote=true]').each(function(a){
+        a.onclick = function(){
+            href = a.getAttribute('href');
+            url = href.split('?')[0];
+            params = href.split('?')[1];
+            newParam = encodeURI(eval(a.getAttribute('data-with')));
+
+            if(params){
+                params = params.split('&');
+                params.each(function(p){
+                    if(p.match(new RegExp('^'+newParam.split('=')[0]+'='))){
+                        oldParam = p;
+                    };
+                });
+                params = params.without(oldParam);
+            }else{
+                params = [];
+            };
+
+            params.push(newParam);
+
+            a.setAttribute('href', url + '?' + params.join('&'));
+        };
+    });
+};

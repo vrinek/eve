@@ -4,6 +4,11 @@
 	The item names are not used in the calculations and are there only for your convenience.
 </p>
 
+<div id="save-bar">
+  <%= link_to "Save this contract", {:controller => 'contracts', :action => 'save'}, {:remote => true, 'data-with' => "'contract_json='+contractJSON()", :id => 'save-this'} %>
+  <%= link_to "Link to this contract", {:key => (@contract ? @contract.key : nil)}, {:style => (@contract ? '' : 'display:none'), :id => 'link-to-this'} %>
+</div>
+
 <ul id="calculations">
 	<li id="add-new-line">
 		<span class="label">Item</span>
@@ -21,14 +26,18 @@
 	lastLineId = 0;
 	total = 0;
 	
-	addNewLine = function(){
+	addNewLine = function(label, price, quantity){
+	  if(label){}else{label = 'Item name'};
+	  if(price){}else{price = 0};
+	  if(quantity){}else{quantity = 0};
+	  
 		id = lastLineId + 1;
 		liHTML = '<li class="calculation" id="calculation-'+id+'">\
-			<span class="result">0.00</span>\
-			<input type="text" class="label" value="Item name">\
-			<input type="text" value="0.00" class="price" onkeyup="calculateResult('+id+')" onblur="numFor(this, 2)" onfocus="invNumFor(this)">\
+			<span class="result">'+number_format(new Number(price * quantity), 2)+'</span>\
+			<input type="text" class="label" value="'+label+'">\
+			<input type="text" value="'+number_format(price, 2)+'" class="price" onkeyup="calculateResult('+id+')" onblur="numFor(this, 2)" onfocus="invNumFor(this)">\
 			&times;\
-			<input type="text" value="0" class="quantity" onkeyup="calculateResult('+id+')" onblur="numFor(this)" onfocus="invNumFor(this)">\
+			<input type="text" value="'+quantity+'" class="quantity" onkeyup="calculateResult('+id+')" onblur="numFor(this)" onfocus="invNumFor(this)">\
 			=\
 		</li>'
 		
@@ -39,8 +48,6 @@
 		lastLineId = id;
 	};
 	
-	addNewLine();
-	
 	calculateResult = function(id){
 		// recalculate the new result of the changed line
 		price = $$('#calculation-'+id+' .price')[0].value.replace(/[^\d\.]/g, '');
@@ -48,6 +55,10 @@
 		newResult = new Number(price * quantity);
 		$$('#calculation-'+id+' .result')[0].innerHTML = number_format(newResult, 2);
 		
+		recalculateTotalSum();
+	};
+	
+	recalculateTotalSum = function(){
 		// recalculate the total sum from all the lines (less error prone)
 		total = 0;
 		$$('li.calculation .result').each(function(result){
@@ -64,4 +75,26 @@
 	invNumFor = function(element){
 		element.value = element.value.replace(/[^\d\.]/g, '')
 	};
+	
+	contractJSON = function(){
+	  contract = new Array;
+	  $$('li.calculation').each(function(li){
+	    line = new Hash;
+	    line.set('label', li.select('.label')[0].value);
+	    line.set('price', li.select('.price')[0].value);
+	    line.set('quantity', li.select('.quantity')[0].value);
+	    contract.push(line);
+	  });
+	  
+	  return contract.toJSON();
+	};
+  
+  <% if @contract %>
+    <% @contract.restore.each do |line| %>
+      addNewLine('<%= line["label"] %>', <%= line['price'] %>, <%= line['quantity'] %>);
+    <% end %>
+		recalculateTotalSum();
+  <% else %>
+  	addNewLine();
+  <% end %>
 </script>

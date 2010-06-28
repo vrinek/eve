@@ -1,6 +1,6 @@
 Eve::Application.routes.draw do |map|
   root :to => "welcome#home"
-
+  
   get "faq", :to => 'static#faq'
   get "contact", :to => 'static#contact'
   get "copyright", :to => 'static#copyright'
@@ -8,20 +8,25 @@ Eve::Application.routes.draw do |map|
   get "debug/dump"
   get "debug/exception"
 
-  get "item-comparison", :to => 'tools#compare_items'
-  get "simple-calculator", :to => 'tools#calculator'
+  get "compare", :to => 'tools#compare_items'
+  get "contract(/:key)", :to => 'tools#calculator'
   get "tools/fetch_children"
   post "tools/add_or_remove"
 
-  get "ore-value", :to => 'mining#ore_value'
+  get "ore", :to => 'mining#ore_value'
   post "mining/save_prices"
   
   # old URL redirection
   get "static/faq", :to => redirect("/faq")
   get "static/contact", :to => redirect("/contact")
   get "static/copyright", :to => redirect("/copyright")
-  get "tools/compare_items", :to => redirect('/item-comparison')
-  get "mining/ore_value", :to => redirect('/ore-value')
+  
+  get "tools/compare_items", :to => redirect('/compare')
+  get "item-comparison", :to => redirect('/compare')
+  get "simple-calculator", :to => redirect('/contract')
+
+  get "mining/ore_value", :to => redirect('/ore')
+  get "ore-value", :to => redirect('/ore')
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
@@ -72,5 +77,5 @@ Eve::Application.routes.draw do |map|
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
+  match ':controller(/:action(/:id(.:format)))'
 end

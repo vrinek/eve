@@ -8,7 +8,7 @@
 	<%= csrf_meta_tag %>
 	<meta name="description" content="<%= @description or "EVE Box contains a few useful tools for players of EVE Online MMORPG" %>">
 </head>
-<body id="<%= controller.action_name %>" class="<%= controller.controller_name %>" <%=raw request_trust %>>
+<body id="<%= controller.action_name %>" class="<%= controller.controller_name %>" onload="fixRemoteLinks(); <%=raw request_trust %>">
 	<%= render "application/header" %>
 	
 	<div id="main">
