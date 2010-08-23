@@ -16,7 +16,7 @@ class MineralValueSet < JsonStore
   
   def self.minerals
     return @minerals if @minerals
-    
+
     @minerals = ItemGroup.find(18).item_types.reject{|m| m.name == "Chalcopyrite"}
   end
 end

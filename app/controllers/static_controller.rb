@@ -7,7 +7,7 @@ class StaticController < ApplicationController
       },
       {
         :q => "What's its purpose?",
-        :a => "To help capsuleers (aka EVE online players) with some advanced tools."
+        :a => "To help capsuleers (aka EVE players) with some advanced tools."
       },
       {
         :q => "It does not work/it is broken.",
@@ -27,11 +27,7 @@ class StaticController < ApplicationController
       },
       {
         :q => "The \"Ore value\" tool seems awfully familiar...",
-        :a => "That's cause it's almost a copy from http://eve.grismar.net/ore/ except mine is javascript and can also save the prices to a cookie"
-      },
-      {
-        :q => "Why can't I save my prices from the in-game browser?",
-        :a => "The in-game browser does not support cookies the same way that other browsers do (at least not at the time I'm writing this)"
+        :a => "That's cause it's almost a copy from http://eve.grismar.net/ore/ except mine is javascript-based and can also save the prices to a URL"
       }
     ]
     

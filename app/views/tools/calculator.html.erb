@@ -38,7 +38,7 @@
 			<input type="text" class="label" value="'+label+'">\
 			<input type="text" value="'+number_format(price, 2)+'" class="price" onkeyup="calculateResult('+id+')" onblur="numFor(this, 2)" onfocus="invNumFor(this)">\
 			&times;\
-			<input type="text" value="'+quantity+'" class="quantity" onkeyup="calculateResult('+id+')" onblur="numFor(this)" onfocus="invNumFor(this)">\
+			<input type="text" value="'+number_format(quantity, 0)+'" class="quantity" onkeyup="calculateResult('+id+')" onblur="numFor(this)" onfocus="invNumFor(this)">\
 			=\
 		</li>'
 		
@@ -82,8 +82,8 @@
 	  $$('li.calculation').each(function(li){
 	    line = new Hash;
 	    line.set('label', li.select('.label')[0].value);
-	    line.set('price', li.select('.price')[0].value);
-	    line.set('quantity', li.select('.quantity')[0].value);
+	    line.set('price', li.select('.price')[0].value.gsub(/[^\d\.]/, ''));
+	    line.set('quantity', li.select('.quantity')[0].value.gsub(/[^\d\.]/, ''));
 	    contract.push(line);
 	  });
 	  
