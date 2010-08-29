@@ -9,34 +9,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100628182205) do
+ActiveRecord::Schema.define(:version => 20100829103503) do
 
   create_table "attribute_categories", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "name"
   end
 
   create_table "attribute_types", :force => true do |t|
-    t.string   "code"
-    t.string   "name"
-    t.boolean  "high_is_good"
-    t.integer  "attribute_unit_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "attribute_category_id"
-    t.integer  "graphic_id"
+    t.string  "code"
+    t.string  "name"
+    t.boolean "high_is_good"
+    t.integer "attribute_unit_id"
+    t.integer "attribute_category_id"
+    t.integer "graphic_id"
   end
 
   add_index "attribute_types", ["attribute_category_id"], :name => "index_attribute_types_on_attribute_category_id"
-  add_index "attribute_types", ["attribute_unit_id"], :name => "index_attribute_types_on_unit_id"
+  add_index "attribute_types", ["attribute_unit_id"], :name => "index_attribute_types_on_attribute_unit_id"
   add_index "attribute_types", ["graphic_id"], :name => "index_attribute_types_on_graphic_id"
 
   create_table "attribute_units", :force => true do |t|
-    t.string   "name"
-    t.string   "display"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "name"
+    t.string "display"
   end
 
   create_table "contracts", :force => true do |t|
@@ -49,39 +43,32 @@ ActiveRecord::Schema.define(:version => 20100628182205) do
   add_index "contracts", ["key"], :name => "index_contracts_on_key"
 
   create_table "graphics", :force => true do |t|
-    t.string   "icon"
-    t.string   "description"
-    t.integer  "max_size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "icon"
+    t.string  "description"
+    t.integer "max_size"
   end
 
   create_table "item_attributes", :force => true do |t|
-    t.integer  "item_type_id"
-    t.integer  "attribute_type_id"
-    t.integer  "integer_value"
-    t.float    "float_value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "integer_value"
+    t.float   "float_value"
+    t.integer "item_type_id"
+    t.integer "attribute_type_id"
   end
 
-  add_index "item_attributes", ["item_type_id", "attribute_type_id"], :name => "index_item_attributes_on_item_type_id_and_attribute_type_id"
+  add_index "item_attributes", ["attribute_type_id"], :name => "index_item_attributes_on_attribute_type_id"
+  add_index "item_attributes", ["item_type_id"], :name => "index_item_attributes_on_item_type_id"
 
   create_table "item_categories", :force => true do |t|
-    t.string   "name"
-    t.integer  "graphic_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "name"
+    t.integer "graphic_id"
   end
 
   add_index "item_categories", ["graphic_id"], :name => "index_item_categories_on_graphic_id"
 
   create_table "item_groups", :force => true do |t|
-    t.integer  "item_category_id"
-    t.string   "name"
-    t.integer  "graphic_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "name"
+    t.integer "item_category_id"
+    t.integer "graphic_id"
   end
 
   add_index "item_groups", ["graphic_id"], :name => "index_item_groups_on_graphic_id"
@@ -97,32 +84,29 @@ ActiveRecord::Schema.define(:version => 20100628182205) do
   add_index "item_type_materials", ["material_type_id"], :name => "index_item_type_materials_on_material_type_id"
 
   create_table "item_types", :force => true do |t|
-    t.string   "name"
-    t.float    "volume"
-    t.integer  "portion_size"
-    t.integer  "market_group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "graphic_id"
-    t.integer  "item_group_id"
+    t.string  "name"
+    t.float   "volume"
+    t.integer "portion_size"
+    t.integer "market_group_id"
+    t.integer "graphic_id"
+    t.integer "item_group_id"
+    t.float   "capacity"
   end
 
   add_index "item_types", ["graphic_id"], :name => "index_item_types_on_graphic_id"
   add_index "item_types", ["item_group_id"], :name => "index_item_types_on_item_group_id"
-  add_index "item_types", ["name", "market_group_id"], :name => "index_item_types_on_name_and_market_group_id"
+  add_index "item_types", ["market_group_id"], :name => "index_item_types_on_market_group_id"
 
   create_table "market_groups", :force => true do |t|
-    t.string   "ancestry"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "ancestry"
+    t.string "name"
   end
 
   add_index "market_groups", ["ancestry"], :name => "index_market_groups_on_ancestry"
 
   create_table "mineral_value_sets", :force => true do |t|
     t.string   "key"
-    t.string   "data"
+    t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

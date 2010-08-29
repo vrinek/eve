@@ -3,12 +3,12 @@
 	<ul id="navigation">
 		<li>
 			<span class="category">General Tools:</span>
-			<%= nav_link "Item Comparison", {:controller => "tools", :action => "compare_items"} %>
-			<%= nav_link "Contract Calculator", {:controller => "tools", :action => "calculator"} %>
+			<%= nav_link "Item Comparison", {:controller => "item_comparison", :action => "index"} %>
+			<%= nav_link "Contract Calculator", {:controller => "contracts", :action => "show"} %>
 		</li>
 		<li>
 			<span class="category">Mining Tools:</span>
-			<%= nav_link "Ore value", {:controller => "mining", :action => "ore_value"} %>
+			<%= nav_link "Ore value", {:controller => "mineral_value_sets", :action => "index"} %>
 		</li>
 	</ul>
 </div>

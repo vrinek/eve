@@ -1,0 +1,6 @@
+page.replace_html 'save-this', 'Save these prices'
+if @mineral_value_set
+  page.replace 'link-to-this', link_to("Link to these prices (#{@mineral_value_set.key})", {:controller => 'mineral_value_sets', :action => 'index', :key => @mineral_value_set.key}, {:id => 'link-to-this'})
+else
+  page.replace 'link-to-this', '<span id="link-to-this">Could not save prices</span>'
+end

@@ -5,6 +5,10 @@ class ItemTypeMaterial < ActiveRecord::Base
   belongs_to :item_type
   belongs_to :material_type, :class_name => "ItemType", :foreign_key => "material_type_id"
   
+  def volume
+    quantity * material_type.volume
+  end
+  
   class << self
     def translate(row)
       @row = row

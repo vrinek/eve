@@ -1,0 +1,42 @@
+<%= button_to_function "Remove all items", "clearComparison()" %>
+
+<table>
+	<tr class="items">
+		<th></th>
+		<% @items.each do |item| %>
+			<th class="name">
+				<div class="graphic"><%= graphic_tag_for(item, 64) %></div>
+				<div class="name">
+					<%= item.name %>
+					<%= ingame_link_to_item item.id %>
+				</div>
+				<div class="remove"><%= link_to_function "remove", "itemChecked(#{item.id})" %></div>
+			</th>
+		<% end %>
+	</tr>
+	<% previous_category_id = nil %>
+	<% @all_attribute_types.each do |attribute| %>
+		<% unless previous_category_id == attribute.attribute_category_id %>
+			<tr class="category">
+				<th colspan="<%= @items.size + 1 %>"><%= attribute.attribute_category.try(:name) %></th>
+			</tr>
+			<% previous_category_id = attribute.attribute_category_id %>
+		<% end %>
+		<tr data-code="<%= attribute.code %>" class="attribute <%= cycle "odd", "even" %>">
+			<th class="name">
+				<%= image_tag attribute.graphic.url, :size => "16x16" if attribute.graphic %>
+				<%= attribute.name.blank? ? attribute.code : attribute.name %>
+				<% unless attribute.attribute_unit.display.blank? %>
+					<small>(<%= attribute.attribute_unit.display %>)</small>
+				<% end %>
+			</th>
+			<% values = @items.map{|item| item.attribute(attribute.code).try(:value)} %>
+			<% best = attribute.high_is_good ? values.compact.sort.last : values.compact.sort.first %>
+			<% values.each do |value| %>
+				<td class="<%= 'best' if value == best and values.uniq.size > 1 %>">
+					<%= value %>
+				</td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>

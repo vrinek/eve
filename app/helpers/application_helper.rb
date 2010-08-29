@@ -1,3 +1,4 @@
+# Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   def ingame_link_to_item(item_type_id)
     if is_igb?
@@ -18,7 +19,7 @@ module ApplicationHelper
     unless controller.controller_name == url[:controller] and controller.action_name == url[:action]
       link_to(html, url)
     else
-      raw "<span class='current'>#{html}</span>"
+      "<span class='current'>#{html}</span>"
     end
   end
   

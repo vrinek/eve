@@ -4,6 +4,7 @@ class ItemGroup < ActiveRecord::Base
   
   has_many :item_types
   belongs_to :item_category
+  belongs_to :graphic
   
   class << self
     def translate(row)

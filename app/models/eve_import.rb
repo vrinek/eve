@@ -5,10 +5,12 @@ class EveImport
   VERSION = 'tyr101'
   
   def initialize(model)
+    # we need the model to find the constants ???
     @model = model
   end
   
   def get_xml
+    # local_combo XML contains multiple tables (usually small ones)
     local_combo = File.join(DATA_FOLDER, "#{VERSION}-#{@model::EVE_TABLE_NAME[0..2]}.xml")
     local_table = File.join(DATA_FOLDER, "#{VERSION}-#{@model::EVE_TABLE_NAME}.xml")
 
@@ -21,7 +23,8 @@ class EveImport
     end
     
     puts "\tusing: #{local}"
-    @xml = Nokogiri::XML open(local).read
+    # TODO: migrate to Hpricot, I don't trust Nokogiri...
+    @xml = Nokogiri::XML File.open(local, 'r').read
   end
   
   def total
@@ -29,21 +32,23 @@ class EveImport
   end
   
   def save
+    # rows that fail due to referencing other rows will be retried later on
     to_retry = {}
     
     (@xml.root/"#{@model::EVE_TABLE_NAME}/row").each do |row|
-      obj = @model.new
+      inst = @model.new
       
+      # we should have a unique id-like field in the original table
       if @model::EVE_ID_FIELD
         id = (row%"#{@model::EVE_ID_FIELD}").content.to_i
-        obj.id = id
+        inst.id = id
       end
       atts = @model.translate(row)
 
       begin
-        obj.attributes = atts
-        obj.save
-      rescue => e
+        inst.attributes = atts
+        inst.save
+      rescue
         to_retry[id] = atts if @model::EVE_ID_FIELD
       end
     end
@@ -53,16 +58,17 @@ class EveImport
       fails = 0
       puts "\tRetrying for #{to_retry.size} failed..."
       keys = to_retry.keys.sort
-
+      
+      # until we are done or every one fails
       until keys.empty? or fails > keys.size do
         id = keys.shift
 
-        obj = @model.new
-        obj.id = id
+        inst = @model.new
+        inst.id = id
 
         begin
-          obj.attributes = to_retry[id]
-          obj.save
+          inst.attributes = to_retry[id]
+          inst.save
 
           fails = 0
         rescue

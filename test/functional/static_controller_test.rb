@@ -1,14 +1,8 @@
 require 'test_helper'
 
 class StaticControllerTest < ActionController::TestCase
-  test "should get faq" do
-    get :faq
-    assert_response :success
+  # Replace this with your real tests.
+  test "the truth" do
+    assert true
   end
-
-  test "should get contact" do
-    get :contact
-    assert_response :success
-  end
-
 end

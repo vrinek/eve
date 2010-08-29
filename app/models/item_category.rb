@@ -3,6 +3,7 @@ class ItemCategory < ActiveRecord::Base
   EVE_ID_FIELD = "categoryID"
   
   has_many :item_groups
+  belongs_to :graphic
 
   class << self
     def translate(row)

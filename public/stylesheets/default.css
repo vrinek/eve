@@ -74,111 +74,111 @@ p.tip {
   padding: 8px 8px 8px 64px;
   min-height: 48px;
 }
-body.tools#compare_items #browse_groups {
+body.item_comparison#index #browse_groups {
   height: 300px;
   overflow-x: scroll;
   overflow-y: hidden;
   width: 100%;
   padding-bottom: 16px;
 }
-body.tools#compare_items #browse_groups .wrapper {
+body.item_comparison#index #browse_groups .wrapper {
   height: 100%;
   width: 1440px;
 }
-body.tools#compare_items #browse_groups .wrapper ul.pane {
+body.item_comparison#index #browse_groups .wrapper ul.pane {
   height: 100%;
   width: 240px;
   overflow-y: scroll;
   overflow-x: hidden;
   float: left;
 }
-body.tools#compare_items #browse_groups .wrapper ul.pane li {
+body.item_comparison#index #browse_groups .wrapper ul.pane li {
   width: 214px;
   padding: 2px 20px 2px 6px;
 }
-body.tools#compare_items #browse_groups .wrapper ul.pane li a.name {
+body.item_comparison#index #browse_groups .wrapper ul.pane li a.name {
   display: block;
   margin-right: 20px;
 }
-body.tools#compare_items #browse_groups .wrapper ul.pane li a.ingame-item-info { float: right; }
-body.tools#compare_items #browse_groups .wrapper ul.pane li.selected { background-color: darkgreen; }
-body.tools#compare_items #browse_groups .wrapper ul.pane li.shown { background-color: olive; }
-body.tools#compare_items #browse_groups .wrapper ul.pane li.add_all_items {
+body.item_comparison#index #browse_groups .wrapper ul.pane li a.ingame-item-info { float: right; }
+body.item_comparison#index #browse_groups .wrapper ul.pane li.selected { background-color: darkgreen; }
+body.item_comparison#index #browse_groups .wrapper ul.pane li.shown { background-color: olive; }
+body.item_comparison#index #browse_groups .wrapper ul.pane li.add_all_items {
   text-align: right;
   margin-top: 16px;
   font-size: 12px;
 }
-body.tools#compare_items #comparison { padding: 4px; }
-body.tools#compare_items #comparison table td {
+body.item_comparison#index #comparison { padding: 4px; }
+body.item_comparison#index #comparison table td {
   font-family: monospace;
   text-align: right;
   padding: 0 4px;
   border-left: 1px solid white;
 }
-body.tools#compare_items #comparison table th { padding: 2px; }
-body.tools#compare_items #comparison table tr.items th.name {
+body.item_comparison#index #comparison table th { padding: 2px; }
+body.item_comparison#index #comparison table tr.items th.name {
   padding: 2px 8px;
   width: 100px;
   text-align: center;
 }
-body.tools#compare_items #comparison table tr.items th.name a.ingame-item-info img { vertical-align: middle; }
-body.tools#compare_items #comparison table tr.items th.name div.name { min-height: 40px; }
-body.tools#compare_items #comparison table tr.items th.name div.remove {
+body.item_comparison#index #comparison table tr.items th.name a.ingame-item-info img { vertical-align: middle; }
+body.item_comparison#index #comparison table tr.items th.name div.name { min-height: 40px; }
+body.item_comparison#index #comparison table tr.items th.name div.remove {
   font-size: 12px;
   text-align: right;
 }
-body.tools#compare_items #comparison table tr.items th.name div.remove a:hover { color: red; }
-body.tools#compare_items #comparison table tr.category th {
+body.item_comparison#index #comparison table tr.items th.name div.remove a:hover { color: red; }
+body.item_comparison#index #comparison table tr.category th {
   font-size: 18px;
   border-bottom: 2px solid white;
   padding: 16px 0 0 48px;
 }
-body.tools#compare_items #comparison table tr.attribute th.name {
+body.item_comparison#index #comparison table tr.attribute th.name {
   padding: 2px 8px 2px 4px;
   width: 120px;
 }
-body.tools#compare_items #comparison table tr.attribute.odd th { background-color: black; }
-body.tools#compare_items #comparison table tr.attribute.odd td { background-color: black; }
-body.tools#compare_items #comparison table tr.attribute.even th { background-color: #222222; }
-body.tools#compare_items #comparison table tr.attribute.even td { background-color: #222222; }
-body.tools#compare_items #comparison table tr.attribute.odd td.best { color: green; }
-body.tools#compare_items #comparison table tr.attribute.even td.best { color: green; }
-body.tools#calculator ul#calculations { margin: 16px; }
-body.tools#calculator ul#calculations li#add-new-line {
+body.item_comparison#index #comparison table tr.attribute.odd th { background-color: black; }
+body.item_comparison#index #comparison table tr.attribute.odd td { background-color: black; }
+body.item_comparison#index #comparison table tr.attribute.even th { background-color: #222222; }
+body.item_comparison#index #comparison table tr.attribute.even td { background-color: #222222; }
+body.item_comparison#index #comparison table tr.attribute.odd td.best { color: green; }
+body.item_comparison#index #comparison table tr.attribute.even td.best { color: green; }
+body.contracts#show ul#calculations { margin: 16px; }
+body.contracts#show ul#calculations li#add-new-line {
   text-align: right;
   padding-right: 8px;
 }
-body.tools#calculator ul#calculations li#add-new-line span {
+body.contracts#show ul#calculations li#add-new-line span {
   float: left;
   display: block;
   width: 150px;
   text-align: center;
   margin: 0 16px;
 }
-body.tools#calculator ul#calculations li#add-new-line span.label { margin-left: 8px; }
-body.tools#calculator ul#calculations li#add-new-line span.price { margin: 0 16px 0 40px; }
-body.tools#calculator ul#calculations li.calculation input {
+body.contracts#show ul#calculations li#add-new-line span.label { margin-left: 8px; }
+body.contracts#show ul#calculations li#add-new-line span.price { margin: 0 16px 0 40px; }
+body.contracts#show ul#calculations li.calculation input {
   padding: 2px 4px;
   margin: 8px;
 }
-body.tools#calculator ul#calculations li.calculation span {
+body.contracts#show ul#calculations li.calculation span {
   padding: 2px 4px;
   margin: 8px;
 }
-body.tools#calculator ul#calculations li.calculation input {
+body.contracts#show ul#calculations li.calculation input {
   width: 150px;
   background-color: #666666;
   color: white;
   border: 1px solid black;
 }
-body.tools#calculator ul#calculations li.calculation input.price { text-align: right; }
-body.tools#calculator ul#calculations li.calculation input.quantity { text-align: right; }
-body.tools#calculator ul#calculations li.calculation input.label { margin-right: 32px; }
-body.tools#calculator ul#calculations li.calculation span.result {
+body.contracts#show ul#calculations li.calculation input.price { text-align: right; }
+body.contracts#show ul#calculations li.calculation input.quantity { text-align: right; }
+body.contracts#show ul#calculations li.calculation input.label { margin-right: 32px; }
+body.contracts#show ul#calculations li.calculation span.result {
   display: block;
   float: right;
 }
-body.tools#calculator ul#calculations li#total {
+body.contracts#show ul#calculations li#total {
   margin-top: 16px;
   padding-top: 8px;
   border-top: 2px solid black;
@@ -186,8 +186,8 @@ body.tools#calculator ul#calculations li#total {
   text-align: right;
   height: 18px;
 }
-body.tools#calculator ul#calculations li#total span.result { float: right; }
-body.tools#calculator ul#calculations li#total span.label {
+body.contracts#show ul#calculations li#total span.result { float: right; }
+body.contracts#show ul#calculations li#total span.label {
   float: left;
   margin-left: 500px;
 }
@@ -212,11 +212,11 @@ body.static#faq #main ul li p.question {
   color: #999999;
   margin-bottom: 8px;
 }
-body.mining#ore_value #market-prices {
+body.mineral_value_sets#index #market-prices {
   font-size: 16px;
   margin-left: 16px;
 }
-body.mining#ore_value #market-prices input {
+body.mineral_value_sets#index #market-prices input {
   width: 100px;
   padding: 2px 4px;
   text-align: right;
@@ -224,43 +224,43 @@ body.mining#ore_value #market-prices input {
   color: #aaaaaa;
   border: 1px solid #666666;
 }
-body.mining#ore_value #market-prices input:hover { color: white; }
-body.mining#ore_value #market-prices input[type=submit] {
+body.mineral_value_sets#index #market-prices input:hover { color: white; }
+body.mineral_value_sets#index #market-prices input[type=submit] {
   width: 180px;
   text-align: center;
 }
-body.mining#ore_value #market-prices td { padding: 2px 4px; }
-body.mining#ore_value #market-prices th { text-align: center; }
-body.mining#ore_value #market-prices th img { vertical-align: middle; }
-body.mining#ore_value #ores { margin: 32px 0 0 16px; }
-body.mining#ore_value #ores th {
+body.mineral_value_sets#index #market-prices td { padding: 2px 4px; }
+body.mineral_value_sets#index #market-prices th { text-align: center; }
+body.mineral_value_sets#index #market-prices th img { vertical-align: middle; }
+body.mineral_value_sets#index #ores { margin: 32px 0 0 16px; }
+body.mineral_value_sets#index #ores th {
   text-align: center;
   min-width: 80px;
   border-right: 1px solid black;
   height: 64px;
 }
-body.mining#ore_value #ores th.isk {
+body.mineral_value_sets#index #ores th.isk {
   text-align: right;
   border-right: none;
   vertical-align: bottom;
   padding-bottom: 4px;
   height: 60px;
 }
-body.mining#ore_value #ores td {
+body.mineral_value_sets#index #ores td {
   text-align: right;
   border-left: 1px solid black;
   padding: 2px 4px;
 }
-body.mining#ore_value #ores tr.odd td { background-color: #666666; }
-body.mining#ore_value #ores tr.ore td.name {
+body.mineral_value_sets#index #ores tr.odd td { background-color: #666666; }
+body.mineral_value_sets#index #ores tr.ore td.name {
   text-align: left;
   border-left: none;
 }
-body.mining#ore_value #ores tr.ore td.name a.ingame-item-info {
+body.mineral_value_sets#index #ores tr.ore td.name a.ingame-item-info {
   float: right;
   margin-left: 8px;
 }
-body.mining#ore_value #ores tr.ore td.name a.ingame-item-info img { vertical-align: middle; }
+body.mineral_value_sets#index #ores tr.ore td.name a.ingame-item-info img { vertical-align: middle; }
 body.welcome#home #main ul#tool-links {
   height: 150px;
   margin: 80px;

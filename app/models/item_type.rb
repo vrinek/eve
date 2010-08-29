@@ -2,6 +2,8 @@ class ItemType < ActiveRecord::Base
   EVE_TABLE_NAME = "invTypes"
   EVE_ID_FIELD = "typeID"
   
+  extend ActiveSupport::Memoizable
+
   belongs_to :market_group
   belongs_to :graphic
   belongs_to :item_group
@@ -19,6 +21,13 @@ class ItemType < ActiveRecord::Base
       hash
     end
   end
+  memoize :composition
+  
+  def most_efficient_harvest
+    oh = OreHarvest.new(composition)
+    oh.find_most_efficient
+    oh
+  end
   
   class << self
     def translate(row)
@@ -30,7 +39,8 @@ class ItemType < ActiveRecord::Base
         :portion_size    => field("portionSize").to_i,
         :market_group_id => field("marketGroupID"),
         :graphic_id      => field("graphicID"),
-        :item_group_id   => field("groupID")
+        :item_group_id   => field("groupID"),
+        :capacity        => field("capacity").to_f
       }
     end
 

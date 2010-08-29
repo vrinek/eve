@@ -7,12 +7,12 @@
 
 <ul id="tool-links">
 	<li>
-		<%= link_to image_tag(Graphic.url("33_03", 128))+"Item Comparison Tool", {:controller => "tools", :action => "compare_items"} %>
+		<%= link_to image_tag(Graphic.url("33_03", 128))+"Item Comparison Tool", {:controller => "item_comparison", :action => "index"} %>
 	</li>
 	<li>
-		<%= link_to image_tag(Graphic.url("32_02", 128))+"Ore Value Calculator", {:controller => "mining", :action => "ore_value"} %>
+		<%= link_to image_tag(Graphic.url("32_02", 128))+"Ore Value Calculator", {:controller => "mineral_value_sets", :action => "index"} %>
 	</li>
 	<li>
-		<%= link_to image_tag(Graphic.url("17_02", 128))+"Contract Calculator", {:controller => "tools", :action => "calculator"} %>
+		<%= link_to image_tag(Graphic.url("17_02", 128))+"Contract Calculator", {:controller => "contracts", :action => "show"} %>
 	</li>
 </ul>

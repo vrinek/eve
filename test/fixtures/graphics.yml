@@ -3,7 +3,9 @@
 one:
   icon: MyString
   description: MyString
+  max_size: 1
 
 two:
   icon: MyString
   description: MyString
+  max_size: 1

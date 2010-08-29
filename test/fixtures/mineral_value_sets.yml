@@ -2,8 +2,8 @@
 
 one:
   key: MyString
-  values: MyString
+  data: MyText
 
 two:
   key: MyString
-  values: MyString
+  data: MyText

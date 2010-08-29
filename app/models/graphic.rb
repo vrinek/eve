@@ -4,6 +4,8 @@ class Graphic < ActiveRecord::Base
   URL_BASE = "http://eve-box.s3.amazonaws.com/images/"
   
   has_many :attribute_types
+  has_many :item_categories
+  has_many :item_groups
   
   def url(size = 16)
     Graphic.url(icon, ((max_size && size > max_size) ? max_size : size))
@@ -24,15 +26,16 @@ class Graphic < ActiveRecord::Base
     end
     
     def fix_after_import
-      local_base = "#{`echo ~`.strip}/Downloads/Tyrannis_1.0.1_imgs/"
-      sizes = [16, 32, 64, 128]
+      local_base = "#{`echo ~`.strip}/Downloads/Tyrannis_1.0.1_imgs"
+      
+      sizes = [16, 32, 64, 128, 256]
 
       find_each do |graphic|
         if graphic.icon.blank?
           graphic.destroy
         else
           sizes.each do |size|
-            if File.exists?(local_base + "icons/#{size}_#{size}/icon#{graphic.icon}.png")
+            if File.exists?(local_base + "/icons/#{size}_#{size}/icon#{graphic.icon}.png")
               graphic.max_size = size
             else
               break
