@@ -9,9 +9,10 @@ Eve::Application.routes.draw do |map|
   get "debug/exception"
 
   get "compare", :to => 'tools#compare_items'
-  get "contract(/:key)", :to => 'tools#calculator'
   get "tools/fetch_children"
   post "tools/add_or_remove"
+
+  get "contract(/:key)", :to => 'tools#calculator'
 
   get "ore(/:key)", :to => 'mining#ore_value'
   
