@@ -1,7 +1,7 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
-function number_format(number, decimals, dec_point, thousands_sep) {
+number_format = function(number, decimals, dec_point, thousands_sep) {
     // Formats a number with grouped thousands  
     // 
     // version: 1004.2314
@@ -69,7 +69,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
     return s.join(dec);
 }
 
-function fixRemoteLinks(){
+fixRemoteLinks = function(){
     $$('a[data-remote=true]').each(function(a){
         a.onclick = function(){
             href = a.getAttribute('href');
@@ -99,4 +99,17 @@ function fixRemoteLinks(){
             a.setAttribute('href', url + '?' + params.join('&'));
         };
     });
+};
+
+numFor = function(element, decimals, extra){
+    if(extra == undefined){extra = ''};
+	element.value = number_format(element.value.replace(/[^\d\.]/g, ''), decimals) + extra
+};
+
+invNumFor = function(element){
+	element.value = simpleNumber(element.value)
+};
+
+simpleNumber = function(num){
+    return new Number(num.replace(/[^\d\.]/g, ''))
 };

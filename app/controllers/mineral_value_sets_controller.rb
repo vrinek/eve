@@ -8,7 +8,7 @@ class MineralValueSetsController < ApplicationController
     
     @basic_ores = ItemCategory.basic_ores
     
-    initial_prices = {
+    @prices = {
       "Tritanium" => 2.3,
       "Pyerite" => 4.0,
       "Mexallon" => 33.0,
@@ -16,14 +16,14 @@ class MineralValueSetsController < ApplicationController
       "Nocxium" => 125.0,
       "Zydrine" => 1200.0,
       "Megacyte" => 2300.0,
-      "Morphite" => 4900.0
+      "Morphite" => 4900.0,
+      "Refining Efficiency" => '75.0%'
     }
-    
-    if params[:key].blank?
-      @prices = initial_prices
-    else
-      @mineral_value_set = MineralValueSet.find_by_key(params[:key])
-      @prices = @mineral_value_set.restore
+
+    unless params[:key].blank?
+      if @mineral_value_set = MineralValueSet.find_by_key(params[:key])
+        @prices.merge! @mineral_value_set.restore
+      end
     end
   end
 

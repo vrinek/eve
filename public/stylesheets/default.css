@@ -232,6 +232,10 @@ body.mineral_value_sets#index #market-prices input[type=submit] {
 body.mineral_value_sets#index #market-prices td { padding: 2px 4px; }
 body.mineral_value_sets#index #market-prices th { text-align: center; }
 body.mineral_value_sets#index #market-prices th img { vertical-align: middle; }
+body.mineral_value_sets#index #market-prices th.efficiency {
+  text-align: right;
+  padding-right: 4px;
+}
 body.mineral_value_sets#index #ores { margin: 32px 0 0 16px; }
 body.mineral_value_sets#index #ores th {
   text-align: center;
@@ -284,7 +288,7 @@ body.welcome#home #main ul#tool-links li a:hover {
   background-color: #666666;
   color: white;
 }
-#save-bar {
+.toolbar {
   border: 1px solid silver;
   border-left: none;
   border-right: none;
@@ -292,14 +296,14 @@ body.welcome#home #main ul#tool-links li a:hover {
   padding: 12px;
   margin: 4px 0;
 }
-#save-bar a#save-this {
+.toolbar a#save-this {
   border: 1px solid #666666;
   background-color: black;
   padding: 2px 4px;
   margin: 2px 8px;
 }
-#save-bar a#save-this:hover {
+.toolbar a#save-this:hover {
   background-color: #333333;
   color: white;
 }
-#save-bar a#link-to-this { font-family: monospace; }
+.toolbar a#link-to-this { font-family: monospace; }

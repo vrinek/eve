@@ -19,13 +19,17 @@
   <tbody>
     <tr>
       <% @minerals.each do |mineral| %>
-      <td><%= text_field_tag "mineral-"+mineral.name, @prices[mineral.name], {:onkeyup => "updatePrices()"} %></td>
+      <td><%= text_field_tag "mineral-"+mineral.name, @prices[mineral.name], {:onkeyup => "updatePrices()", :onblur => "numFor(this, 1)", :onfocus => "invNumFor(this)"} %></td>
       <% end %>
+    </tr>
+    <tr>
+      <th colspan="2" class="efficiency">Refining Efficiency</th>
+      <td><%= text_field_tag "refining-efficiency", @prices['Refining Efficiency'], {:onkeyup => "updatePrices()", :onblur => "numFor(this, 1, '%')", :onfocus => "invNumFor(this)"} %></td>
     </tr>
   </tbody>
 </table>
 
-<div id="save-bar">
+<div class="toolbar">
   <%= link_to_remote "Save these prices", {:url => {:action => 'create'}, :with => "'minerals_json='+mineralJSON()", :loading => "$('link-to-this').hide(); $('save-this').innerHTML = 'Saving...'"}, {:id => 'save-this'} %>
   <%= link_to "Link to these prices", {:key => (@mineral_value_set ? @mineral_value_set.key : nil)}, {:style => (@mineral_value_set ? '' : 'display:none'), :id => 'link-to-this'} %>
 </div>
@@ -40,6 +44,7 @@
 				</th>
 			<% end %>
 			<th class="isk">ISK/m<span style="vertical-align: super; font-size: 12px;">3</span></th>
+			<th class="isk">ISK/unit</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -52,7 +57,8 @@
 			<% @minerals.each do |mineral| %>
 				<td class="value"><%= composition[mineral] %></td>
 			<% end %>
-			<td id="value-of-<%= ore.id %>"></td>
+			<td id="value-of-<%= ore.id %>-by-volume"></td>
+			<td id="value-of-<%= ore.id %>-by-units"></td>
 		 </tr>
 		<% end %>
 	</tbody>
@@ -60,10 +66,14 @@
 
 <script type="text/javascript" charset="utf-8">
 	updatePrices = function(){
+	  refiningEfficiency = $('refining-efficiency').value.replace(/[^\d\.]/g, '') / 100.0;
+	  
 		<% @basic_ores.each do |ore, composition| %>
-			$('value-of-<%= ore.id %>').innerHTML = ((<%= composition.collect{|mineral, quantity|
-				"($('mineral-#{mineral.name}').value * #{quantity})"
-			}.join(" + ") %>) / <%= ore.volume * ore.portion_size %>).toFixed(2)
+		  byUnit = Math.floor((<%= composition.collect{|mineral, quantity|
+				"(simpleNumber($('mineral-#{mineral.name}').value) * #{quantity})"
+			}.join(" + ") %>) / <%= ore.portion_size %> * refiningEfficiency)
+			$('value-of-<%= ore.id %>-by-units').innerHTML = number_format(byUnit, 2)
+			$('value-of-<%= ore.id %>-by-volume').innerHTML = number_format(byUnit/<%= ore.volume %>, 2)
 		<% end %>
 		
 		return false;
@@ -72,11 +82,16 @@
 	mineralJSON = function(){
 	  values = new Hash;
 	  <% @minerals.each do |mineral| %>
-      values.set('<%= mineral.name %>', new Number($F('mineral-<%= mineral.name %>')));
+      values.set('<%= mineral.name %>', simpleNumber($F('mineral-<%= mineral.name %>')));
     <% end %>
+    values.set('Refining Efficiency', simpleNumber($F('refining-efficiency')));
 	  
 	  return values.toJSON();
 	};
 	
+	<% @minerals.map(&:name).each do |name| %>
+	  numFor($('mineral-<%= name %>'), 1)
+	<% end %>
+  numFor($('refining-efficiency'), 1, '%')
 	updatePrices();
 </script>

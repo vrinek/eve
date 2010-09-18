@@ -5,7 +5,7 @@
 	Saving a contract gives you a url which you can share with others.
 </p>
 
-<div id="save-bar">
+<div class="toolbar">
   <%= link_to_remote "Save this contract", {:url => {:controller => 'contracts', :action => 'create'}, :with => "'contract_json='+contractJSON()", :loading => "$('link-to-this').hide(); $('save-this').innerHTML = 'Saving...'"}, {:id => 'save-this'} %>
   <%= link_to "Link to this contract", {:key => (@contract ? @contract.key : nil)}, {:style => (@contract ? '' : 'display:none'), :id => 'link-to-this'} %>
 </div>
@@ -67,14 +67,6 @@
 		});
 		
 		$$('#total .result')[0].innerHTML = number_format(total, 2);
-	};
-	
-	numFor = function(element, decimals){
-		element.value = number_format(element.value.replace(/[^\d\.]/g, ''), decimals)
-	};
-	
-	invNumFor = function(element){
-		element.value = element.value.replace(/[^\d\.]/g, '')
 	};
 	
 	contractJSON = function(){
