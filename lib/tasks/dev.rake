@@ -2,14 +2,30 @@ namespace :eve do
   desc "Finds ore requirements for an item"
   task :ore, :name, :quantity, :needs => :environment do |t, args|
     it = ItemType.find_by_name(args[:name])
+    we_have = { # WELIT corp hangar (industry) in Thunderstone
+      # :tritanium => 980000,
+      # :pyerite => 68700,
+      # :mexallon => 18220,
+      # :noxcium => 88870,
+      # :zydrine => 65470,
+      # :megacyte => 66890
+    }
+    
     if it
       results = []
-      oh = OreHarvest.new(it.composition, (args[:quantity] ? args[:quantity].to_i : 1))
+      if it.composition.empty?
+        comp = {it => (args[:quantity] ? args[:quantity].to_i : 1)}
+        oh = OreHarvest.new(comp, 1, we_have)
+      else
+        oh = OreHarvest.new(it.composition, (args[:quantity] ? args[:quantity].to_i : 1), we_have)
+      end
 
       oh.find_most_efficient(:step)
       results << oh.display_results
+      
       oh.find_most_efficient(:fill)
       results << oh.display_results
+      
       puts side_by_side(results)
     else
       puts "No item found with name #{args[:name].inspect}"

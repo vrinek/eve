@@ -3,8 +3,8 @@ class OreHarvest
   attr :surplus
   attr :item_composition
   
-  def initialize(item_composition, quantity = 1)
-    @item_composition = normalized_composition(item_composition, quantity)
+  def initialize(item_composition, quantity = 1, in_hangar = {})
+    @item_composition = normalized_composition(item_composition, quantity, in_hangar)
     @item_composition.each do |k, v|
       puts "#{pretty_s(v).rjust(9)} : #{k.name}"
     end
@@ -116,21 +116,32 @@ class OreHarvest
     return units
   end
   
-  def normalized_composition(item_composition, quantity)
-    item_composition.inject(Hash.new) do |hash, kv|
+  def normalized_composition(item_composition, quantity, in_hangar)
+    normalized = item_composition.inject(Hash.new) do |hash, kv|
       k, v = kv
       
       if k.composition.empty?
         hash[k] ||= 0
         hash[k] += v * quantity
       else
-        normalized_composition(k.composition, v/k.portion_size).each do |k2, v2|
+        normalized_composition(k.composition, v/k.portion_size, in_hangar).each do |k2, v2|
           hash[k2] ||= 0
           hash[k2] += v2
         end
       end
       hash
     end
+    
+    in_hangar.each do |mineral_name, quantity|
+      if mineral = MineralComposition.minerals.find{|m| m.name == mineral_name.to_s.titleize}
+        if normalized[mineral]
+          normalized[mineral] -= quantity
+          normalized.delete(mineral) if normalized[mineral] < 0
+        end
+      end
+    end
+    
+    return normalized
   end
   
   def pretty_s(int)
