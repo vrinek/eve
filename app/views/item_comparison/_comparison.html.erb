@@ -15,6 +15,22 @@
 		<% end %>
 	</tr>
 	<% previous_category_id = nil %>
+	
+	<% values = @items.map{|item| item.capacity} %>
+	<% unless values.uniq.size == 1 and values.uniq[0] == 0 %>
+  	<tr data-code="cargohold" class="attribute <%= cycle "odd", "even" %>">
+  		<th class="name">
+  		  Cargohold <small>(m3)</small>
+  		</th>
+  		<% best = values.compact.sort.last %>
+  		<% values.each do |value| %>
+  			<td class="<%= 'best' if value == best and values.uniq.size > 1 %>">
+  				<%= value %>
+  			</td>
+  		<% end %>
+  	</tr>
+	<% end %>
+	
 	<% @all_attribute_types.each do |attribute| %>
 		<% unless previous_category_id == attribute.attribute_category_id %>
 			<tr class="category">
